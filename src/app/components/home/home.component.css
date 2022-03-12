@@ -1,0 +1,24 @@
+i{
+    padding-left: 10px;
+    padding-right: 8px;
+}
+
+.logout-btn{
+    border-color: #1CBBEA;
+    color: #eee;
+    font-weight: 500;
+    border-width: 2px;
+
+}
+
+.navbar-dark .nav-item .nav-link{
+    font-weight: 500;
+}
+
+.navbar-dark .nav-item.active .nav-link,
+.navbar-dark .nav-item .nav-link:active,
+.navbar-dark .nav-item .nav-link:focus,
+.navbar-dark .nav-item:hover .nav-link{
+    font-weight: 500;
+    color: #FFF;
+}

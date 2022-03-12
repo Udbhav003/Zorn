@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center h-100">
+    <div class="searchbar col-lg-8 col-md-10 col-sm-12">
+      <input class="search_input" type="text" name="" placeholder="Search..." />
+      <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+    </div>
+  </div>
+
+  <div class="row food-list-container">
+    <div
+      *ngFor="let food of foods; let i = index"
+      class="card col-lg-3 col-md-4 col-sm-8 mx-2"
+    >
+      <a
+        ><img
+          class="card-img-top"
+          src="{{ food.imageUrl }}"
+          alt="Card image cap"
+      /></a>
+      <div class="card-body">
+        <h5 class="card-title">{{ food.dishName | titlecase }}</h5>
+        <div class="row ratings-container">
+          <p class="card-text card-cost-label">
+            {{ food.cost | currency: "INR":"symbol" }}
+          </p>
+          <i *ngIf="food.rating >= 1" class="fa fa-star checked"></i>
+          <i *ngIf="food.rating >= 2" class="fa fa-star checked"></i>
+          <i *ngIf="food.rating >= 3" class="fa fa-star checked"></i>
+          <i *ngIf="food.rating >= 4" class="fa fa-star checked"></i>
+          <i *ngIf="food.rating >= 5" class="fa fa-star checked"></i>
+        </div>
+        <p class="card-text">{{ food.description }}</p>
+        <div class="row card-btn-container">
+          <a class="btn btn-add-to-cart col ml-3 mr-1" (click)="confirm('cart',food)"
+            >Add to Cart</a
+          >
+          <a class="btn btn-primary col ml-1 mr-3" (click)="confirm('order',food)"
+            >Order Now</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

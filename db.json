@@ -1,0 +1,221 @@
+{
+  "users": [
+    {
+      "firstName": "Udbhav Kishor",
+      "lastName": "Sinha",
+      "email": "udbhavsinha002@gmail.com",
+      "password": "iamudbhav",
+      "cPassword": "8zZtbfAhu8aBTPv",
+      "id": 545343,
+      "addresses": [
+        {
+          "houseNo": "128, Mill Tola, Aminabad, PO Semapur Factory",
+          "city": "Katihar",
+          "state": "Bihar",
+          "landmark": "Near Electric Powerhouse"
+        }
+      ]
+    },
+    {
+      "firstName": "Rishita",
+      "lastName": "Kashyap",
+      "email": "rishita022@gmail.com",
+      "password": "123456",
+      "cPassword": "123456",
+      "id": 506994,
+      "addresses": [
+        {
+          "houseNo": "128, Mill Tola, Aminabad",
+          "city": "Katihar",
+          "state": "Bihar",
+          "landmark": "Near E. Powerhouse"
+        }
+      ]
+    }
+  ],
+  "foodList": [
+    {
+      "feedId": 45,
+      "id": 1,
+      "restaurant": "reddys biriyani zone",
+      "dishName": "roasted chicken biriyani",
+      "description": "Indian Restaurant",
+      "rating": 4,
+      "cost": 190,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 30,
+      "id": 2,
+      "restaurant": "kabablo",
+      "dishName": "Cajun spiced chicken",
+      "description": "Indian Restaurant",
+      "rating": 4.1,
+      "cost": 230,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 11,
+      "id": 3,
+      "restaurant": "main land china",
+      "dishName": "Veg Momos",
+      "description": "Chineese Restaurant",
+      "rating": 3.9,
+      "cost": 250,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 77,
+      "id": 4,
+      "restaurant": "beijing bites",
+      "dishName": "cripy fried chicken momos",
+      "description": "Chineese Restaurant",
+      "rating": 4.2,
+      "cost": 180,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 23,
+      "id": 5,
+      "restaurant": "mcdonald's",
+      "dishName": "American cheese burger",
+      "description": "American Restaurant",
+      "rating": 3.9,
+      "cost": 260,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 37,
+      "id": 6,
+      "restaurant": "KFC",
+      "dishName": "KFC chicken bucket",
+      "description": "American Restaurant",
+      "rating": 4.1,
+      "cost": 599,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 5,
+      "id": 7,
+      "restaurant": "home kitchen services",
+      "dishName": "mix non veg noodles",
+      "description": "Chineese Restaurant",
+      "rating": 3.9,
+      "cost": 100,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 59,
+      "id": 8,
+      "restaurant": "hotel shalimar",
+      "dishName": "chicken fried rice",
+      "description": "chineese Restaurant",
+      "rating": 4.4,
+      "cost": 190,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 91,
+      "id": 9,
+      "restaurant": "al arabia",
+      "dishName": "Chicken shawarma",
+      "description": "Lebaneese style Restaurant",
+      "rating": 4.2,
+      "cost": 120,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 62,
+      "id": 10,
+      "restaurant": "al bek",
+      "dishName": "Alfaham Chicken",
+      "description": "Lebaneese style Restaurant",
+      "rating": 4.1,
+      "cost": 230,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 98,
+      "id": 8,
+      "restaurant": "hotel shalimar",
+      "dishName": "chicken fried rice",
+      "description": "chineese Restaurant",
+      "rating": 4.4,
+      "cost": 190,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 17,
+      "id": 9,
+      "restaurant": "al arabia",
+      "dishName": "Chicken shawarma",
+      "description": "Lebaneese style Restaurant",
+      "rating": 4.2,
+      "cost": 120,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 27,
+      "id": 10,
+      "restaurant": "al bek",
+      "dishName": "Alfaham Chicken",
+      "description": "Lebaneese style Restaurant",
+      "rating": 4.1,
+      "cost": 230,
+      "imageUrl": "https://picsum.photos/640/400"
+    },
+    {
+      "feedId": 14,
+      "restaurant": "reddys biriyani zone",
+      "dishName": "roasted chicken biriyani",
+      "description": "Indian Restaurant",
+      "rating": 4,
+      "cost": 190,
+      "imageUrl": "https://picsum.photos/640/400",
+      "id": 11
+    },
+    {
+      "feedId": 15,
+      "restaurant": "reddys biriyani zone",
+      "dishName": "roasted chicken biriyani",
+      "description": "Indian Restaurant",
+      "rating": 4,
+      "cost": 190,
+      "imageUrl": "https://picsum.photos/640/400",
+      "id": 12
+    },
+    {
+      "feedId": 16,
+      "restaurant": "reddys biriyani zone",
+      "dishName": "roasted chicken biriyani",
+      "description": "Indian Restaurant",
+      "rating": 4,
+      "cost": 190,
+      "unique": 0.5204481863089581,
+      "imageUrl": "https://picsum.photos/640/400",
+      "id": 13
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userid": 1,
+      "feedId": 16,
+      "orderstatus": "placed",
+      "paymentStatus": "paid",
+      "orderDateTime": "10/10/2021:7:30pm"
+    }
+  ],
+  "cart": [
+    {
+      "id": 977105,
+      "userId": "545343",
+      "items": []
+    },
+    {
+      "id": 825477,
+      "userId": "506994",
+      "items": []
+    }
+  ]
+}

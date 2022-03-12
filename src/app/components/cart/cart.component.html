@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8">
+      <h4 class="mt-4 mb-4 font-weight-bold">Shopping Cart</h4>
+      <div *ngIf="cartTotal>0" class="table-cart">
+        <table class="table table-striped cart-data">
+          <thead class="thead-light">
+            <tr>
+              <th></th>
+              <th>Item</th>
+              <th>Base Price</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cartItem of displayData">
+              <td>
+                <div class="card">
+                  <img
+                    class="card-img-top"
+                    src="{{ cartItem.food.imageUrl }}"
+                  />
+                </div>
+              </td>
+              <td>
+                <p>{{ cartItem.food.dishName | titlecase }}</p>
+              </td>
+              <td>
+                <p>{{ cartItem.food.cost | currency: "INR":"symbol" }}</p>
+              </td>
+              <td>
+                <p>{{ cartItem.quantity }}</p>
+              </td>
+              <td>
+                <p>{{ cartItem.totalPrice | currency: "INR":"symbol" }}</p>
+              </td>
+              <td>
+                <button
+                  class="btn btn-danger"
+                  (click)="deleteItem(cartItem.food)"
+                >
+                  <i
+                    [ngClass]="
+                      cartItem.quantity > 1 ? 'fa fa-minus' : 'fa fa-trash-o'
+                    "
+                  ></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="cartTotal>0" class="col-lg-4">
+      <h4 class="mt-4 mb-4 font-weight-bold">Cart Summary</h4>
+      <table class="table table-borderless card-bg px-3">
+        <tbody>
+          <tr>
+            <td class="text-left"><h6>Subtotal</h6></td>
+            <td class="text-right">
+              <h6>
+                <strong>{{ subTotal | currency: "INR":"symbol" }}</strong>
+              </h6>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-left"><h6>Tax (18% GST)</h6></td>
+            <td class="text-right">
+              <h6>
+                <strong>{{ tax | currency: "INR":"symbol" }}</strong>
+              </h6>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-left"><h5  class="font-weight-bold">Total</h5></td>
+            <td class="text-right">
+              <h4>
+                <strong>{{ cartTotal | currency: "INR":"symbol" }}</strong>
+              </h4>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex card-bg px-4">
+        <button type="button" class="btn btn-outline-primary w-100 mr-2" (click)="navigateToFoodList()">
+            Continue Shopping
+          </button>
+          <button type="button" class="btn btn-success w-100">
+            Checkout Now
+          </button>
+      </div>
+      
+      <div class="d-block mt-3 card-bg px-4">
+        <button type="button" class="btn btn-outline-primary d-block w-100" (click)="navigateToFoodList()">
+            Add Address
+          </button>
+          <button type="button" class="btn btn-primary d-block w-100 mt-3">
+            Add Payment Details
+          </button>
+      </div>
+      
+    </div>
+  </div>
+</div>

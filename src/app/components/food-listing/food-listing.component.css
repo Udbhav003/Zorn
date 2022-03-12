@@ -1,0 +1,111 @@
+.card {
+  padding: 0;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.card-img-top {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.food-list-container {
+  margin: 0px 20px;
+  justify-content: center;
+  min-width: 360px;
+}
+
+.ratings-container {
+  width: 100%;
+  margin: 10px 0px;
+  align-items: center;
+}
+
+.card-cost-label {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0;
+  margin-right: auto;
+  padding: 0;
+}
+
+.btn-add-to-cart {
+  border-color: #444d89;
+  border-width: 2px;
+  color: #444d89;
+  font-size: 14px;
+  font-weight: 500;
+  -o-transition: all 0.218s;
+  -moz-transition: all 0.218s;
+  -webkit-transition: all 0.218s;
+  transition: all 0.218s;
+}
+
+.btn.btn-add-to-cart:hover,
+.btn.btn-add-to-cart:active,
+.btn.btn-add-to-cart:focus {
+  background-color: #444d89;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #1cbbea;
+  border-color: #1cbbea;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  -o-transition: all 0.218s;
+  -moz-transition: all 0.218s;
+  -webkit-transition: all 0.218s;
+  transition: all 0.218s;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary:focus {
+  border-color: #2d6a4f;
+  background-color: #2d6a4f;
+  color: #eee;
+}
+
+.checked {
+  color: orange;
+}
+
+.searchbar {
+  margin: 50px 0px;
+  height: 60px;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.search_input {
+  color: #222222;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 80%;
+  caret-color: #222222;
+  line-height: 40px;
+}
+
+.searchbar:hover > .search_icon {
+  background: #444d89;
+  color: #1cbbea;
+}
+
+.search_icon {
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: #222222;
+  text-decoration: none;
+  -o-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
