@@ -21,8 +21,8 @@ export class PaymentDetailsComponent implements OnInit {
   currentPaymentMethod: IPaymentMethodData;
   selectedPaymentIndex: number;
   backgroundColorArray: { background: string }[];
-  monthsArray: number[]
-  yearsArray: number[]
+  monthsArray: number[];
+  yearsArray: number[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,8 +36,8 @@ export class PaymentDetailsComponent implements OnInit {
     this.selectedPaymentIndex = -1;
     this.inAddMode = false;
 
-    this.monthsArray = []
-    this.yearsArray = []
+    this.monthsArray = [];
+    this.yearsArray = [];
     if (this.authService.currentUserValue == null) {
       this.router.navigate(['/login']);
     }
@@ -46,23 +46,26 @@ export class PaymentDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.paymentForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
-      creditCardNo: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]{16,16}$')],
-      ],
-      month: ['', Validators.required],
-      year: ['', Validators.required],
-      cvv: ['', [Validators.required, Validators.pattern('^[1-9]{3,3}$')]],
-    },{
-      validator: ValidMonthYear('month', 'year'),
-    });
+    this.paymentForm = this.formBuilder.group(
+      {
+        fullName: ['', Validators.required],
+        creditCardNo: [
+          '',
+          [Validators.required, Validators.pattern('^[0-9]{16,16}$')],
+        ],
+        month: ['', Validators.required],
+        year: ['', Validators.required],
+        cvv: ['', [Validators.required, Validators.pattern('^[1-9]{3,3}$')]],
+      },
+      {
+        validator: ValidMonthYear('month', 'year'),
+      }
+    );
 
-    this.monthsArray = Array.from({length: 12}, (_, i) => i + 1)
+    this.monthsArray = Array.from({ length: 12 }, (_, i) => i + 1);
 
-    let currentYear = new Date().getFullYear()
-    for(let i=0; i<10; i++) this.yearsArray.push(currentYear++)
+    let currentYear = new Date().getFullYear();
+    for (let i = 0; i < 10; i++) this.yearsArray.push(currentYear++);
 
     this.fetchPaymentDetails(this.currentUser.id.toString());
   }

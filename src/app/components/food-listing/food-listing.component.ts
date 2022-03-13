@@ -31,7 +31,7 @@ export class FoodListingComponent implements OnInit {
     this.cartData = [];
     this.cart = {} as ICartData;
     this.isNewRecord = true;
-    this.searchInputText = ""
+    this.searchInputText = '';
   }
 
   ngOnInit(): void {
@@ -79,6 +79,12 @@ export class FoodListingComponent implements OnInit {
           food.dishName +
           ' to Cart?</h5></div>',
         showCancelButton: true,
+        showClass: {
+          popup: 'animate__animated animate__fadeInUp animate__faster',
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutDown animate__faster',
+        },
         confirmButtonText: 'Add to Cart',
         confirmButtonColor: '#2d6a4f',
         cancelButtonColor: '#d33',
@@ -96,6 +102,12 @@ export class FoodListingComponent implements OnInit {
           food.dishName +
           '?</h5></div>',
         showCancelButton: true,
+        showClass: {
+          popup: 'animate__animated animate__fadeInUp animate__faster',
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutDown animate__faster',
+        },
         confirmButtonText: 'Place Order',
         confirmButtonColor: '#2d6a4f',
         cancelButtonColor: '#d33',
@@ -172,6 +184,12 @@ export class FoodListingComponent implements OnInit {
       icon: status,
       showCancelButton: showCancelButton,
       showConfirmButton: true,
+      showClass: {
+        popup: 'animate__animated animate__fadeInUp animate__faster',
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutDown animate__faster',
+      },
       confirmButtonText: confirmText,
       confirmButtonColor: '#2d6a4f',
     }).then((result) => {

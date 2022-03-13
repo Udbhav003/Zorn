@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PaymentDetailsComponent } from './components/payment-details/payment-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
@@ -55,6 +56,7 @@ const routes: Routes = [
   },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: '**', redirectTo: 'home' },
 ];
 

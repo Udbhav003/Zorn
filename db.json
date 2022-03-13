@@ -1,77 +1,35 @@
 {
   "users": [
     {
-      "firstName": "Udbhav Kishor",
+      "id": 346178,
+      "firstName": "Udbhav",
       "lastName": "Sinha",
-      "email": "udbhavsinha002@gmail.com",
-      "password": "iamudbhav",
-      "cPassword": "8zZtbfAhu8aBTPv",
-      "id": 545343,
-      "addresses": [
-        {
-          "houseNo": "128, Mill Tola, Aminabad, PO Semapur Factory",
-          "city": "Katihar",
-          "state": "Bihar",
-          "landmark": "Near Electric Powerhouse"
-        }
-      ],
-      "paymentMethods": [
-        {
-          "fullName": "Udbhav Kishor Sinha",
-          "creditCardNo": 4325234326334632,
-          "month": 9,
-          "year": 2023,
-          "cvv": 512
-        }
-      ]
-    },
-    {
-      "firstName": "Rishita",
-      "lastName": "Kashyap",
-      "email": "rishita022@gmail.com",
-      "password": "123456",
-      "cPassword": "123456",
-      "id": 506994,
-      "addresses": [
-        {
-          "houseNo": "128, Mill Tola, Aminabad",
-          "city": "Katihar",
-          "state": "Bihar",
-          "landmark": "Near E. Powerhouse"
-        }
-      ]
-    },
-    {
-      "firstName": "Binay",
-      "lastName": "Kumar",
-      "email": "binaykr002@gmail.com",
-      "password": "123456",
-      "cPassword": "123456",
-      "id": 500453,
+      "email": "udbhavsinha003@gmail.com",
+      "password": "1234567",
       "addresses": [
         {
           "houseNo": "Mill Tola, Aminabad",
           "city": "Katihar",
           "state": "Bihar",
-          "landmark": "Near Durga Mandir"
+          "landmark": "Near Powerhouse"
         }
       ],
       "paymentMethods": [
         {
-          "fullName": "Binay Kumar",
-          "creditCardNo": 5322626234623524,
-          "month": 1,
-          "year": 2025,
-          "cvv": 524
-        },
-        {
-          "fullName": "Rishita Kashyap",
-          "creditCardNo": 5335324623456345,
-          "month": 10,
-          "year": 2022,
-          "cvv": 645
+          "fullName": "Udbhav Kishor Sinha",
+          "creditCardNo": 6342734642345432,
+          "month": 3,
+          "year": 2023,
+          "cvv": 534
         }
       ]
+    },
+    {
+      "id": 342349,
+      "firstName": "Rishita",
+      "lastName": "Kashyap",
+      "email": "rishita022@gmail.com",
+      "password": "1234567"
     }
   ],
   "foodList": [
@@ -249,60 +207,14 @@
   ],
   "cart": [
     {
-      "id": 977105,
-      "userId": "545343",
+      "id": 916796,
+      "userId": "346178",
       "items": []
     },
     {
-      "id": 825477,
-      "userId": "506994",
+      "id": 853623,
+      "userId": "342349",
       "items": []
-    },
-    {
-      "id": 375263,
-      "userId": "500453",
-      "items": [
-        {
-          "feedId": 45,
-          "id": 574079,
-          "restaurant": "reddys biriyani zone",
-          "dishName": "roasted chicken biriyani",
-          "description": "Indian Restaurant",
-          "rating": 4,
-          "cost": 190,
-          "imageUrl": "https://picsum.photos/640/400"
-        },
-        {
-          "feedId": 30,
-          "id": 835163,
-          "restaurant": "kabablo",
-          "dishName": "Cajun spiced chicken",
-          "description": "Indian Restaurant",
-          "rating": 4.1,
-          "cost": 230,
-          "imageUrl": "https://picsum.photos/640/400"
-        },
-        {
-          "feedId": 11,
-          "id": 880385,
-          "restaurant": "main land china",
-          "dishName": "Veg Momos",
-          "description": "Chineese Restaurant",
-          "rating": 3.9,
-          "cost": 250,
-          "imageUrl": "https://picsum.photos/640/400"
-        },
-        {
-          "feedId": 30,
-          "id": 903121,
-          "restaurant": "kabablo",
-          "dishName": "Cajun spiced chicken",
-          "description": "Indian Restaurant",
-          "rating": 4.1,
-          "cost": 230,
-          "imageUrl": "https://picsum.photos/640/400"
-        }
-      ]
     }
   ]
 }

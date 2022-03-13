@@ -64,35 +64,65 @@ export class RegisterComponent implements OnInit {
         .subscribe((response) => {
           if (response.length > 0) {
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'error',
+              showClass: {
+                popup: 'animate__animated animate__fadeInUp animate__faster',
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutDown animate__faster',
+              },
               title: 'User already registered',
-              showConfirmButton: false,
-              timer: 1500,
+              showConfirmButton: true,
+              confirmButtonText: 'Close',
             });
           } else {
             let user = this.userForm.getRawValue();
-            user.id = Math.floor(Math.random() * 999999);
-            this.authService.register(user).subscribe(
+
+            let requestData = {
+              id: Math.floor(Math.random() * 999999),
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email,
+              password: user.password,
+            };
+
+            this.authService.register(requestData).subscribe(
               (response: IUserFormData[]) => {
                 if (response) {
                   Swal.fire({
-                    position: 'top-end',
+                    position: 'center',
                     icon: 'success',
+                    showClass: {
+                      popup:
+                        'animate__animated animate__fadeInUp animate__faster',
+                    },
+                    hideClass: {
+                      popup:
+                        'animate__animated animate__fadeOutDown animate__faster',
+                    },
                     title: 'Registration Successful',
-                    showConfirmButton: false,
-                    timer: 1500,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Go to Login',
                   });
                   this.router.navigate(['/login']);
                 }
               },
               (error) => {
                 Swal.fire({
-                  position: 'top-end',
+                  position: 'center',
                   icon: 'error',
+                  showClass: {
+                    popup:
+                      'animate__animated animate__fadeInUp animate__faster',
+                  },
+                  hideClass: {
+                    popup:
+                      'animate__animated animate__fadeOutDown animate__faster',
+                  },
                   title: 'Error Occurred',
-                  showConfirmButton: false,
-                  timer: 1500,
+                  showConfirmButton: true,
+                  confirmButtonText: 'Close',
                 });
               }
             );

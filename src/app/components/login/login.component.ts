@@ -5,8 +5,6 @@ import { IUserFormData } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
-import swal from 'sweetalert2'
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -48,7 +46,20 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home']);
           }
           else{
-            Swal.fire('Invalid Credentials', 'Please try again!', 'error')
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              showClass: {
+                popup: 'animate__animated animate__fadeInUp animate__faster'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutDown animate__faster',
+              },
+              title: 'Invalid Credentials',
+              text:'Please Try Again!',
+              showConfirmButton: true,
+              confirmButtonText: 'Close'
+            });
           }
         }
       )
