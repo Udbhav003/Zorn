@@ -3,7 +3,7 @@
     <h4 class="mt-4 mb-4 font-weight-bold w-100">Payment Details</h4>
     <button
       class="btn btn-sm btn-danger h-50"
-      *ngIf="selectedPaymentIndex != -1"
+      *ngIf="selectedPaymentIndex != -1 && !inAddMode"
       (click)="deleteCurrentPaymentMethod()"
     >
       <i class="fa fa-trash"></i>
@@ -89,24 +89,36 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="month">Month</label>
-        <input
-          type="text"
+        <select
           formControlName="month"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['month'].errors }"
-        />
+        >
+          <option selected disabled [ngValue]="null">Select Month</option>
+          <option *ngFor="let month of monthsArray" [ngValue]="month">
+            {{ month }}
+          </option>
+        </select>
+
         <div *ngIf="submitted && f['month'].errors" class="invalid-feedback">
           <div *ngIf="f['month'].errors['required']">Month is required</div>
         </div>
+        <div *ngIf="submitted && f['month'].errors" class="invalid-feedback">
+            <div *ngIf="f['month'].errors['invalidMonth']">Can't select past month</div>
+          </div>
       </div>
       <div class="form-group col-md-4">
         <label for="year">Year</label>
-        <input
-          type="text"
+        <select
           formControlName="year"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['year'].errors }"
-        />
+        >
+          <option selected disabled [ngValue]="null">Select Year</option>
+          <option *ngFor="let year of yearsArray" [ngValue]="year">
+            {{ year }}
+          </option>
+        </select>
         <div *ngIf="submitted && f['year'].errors" class="invalid-feedback">
           <div *ngIf="f['year'].errors['required']">Year is required</div>
         </div>

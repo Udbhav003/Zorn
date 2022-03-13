@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUserFormData } from 'src/app/models/user.model';
@@ -8,15 +8,14 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-
   profileForm: FormGroup;
   loading = false;
   submitted = false;
-  inEditMode: boolean
-  currentUser: IUserFormData
+  inEditMode: boolean;
+  currentUser: IUserFormData;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,12 +23,12 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService
   ) {
-    this.profileForm = {} as FormGroup
-    this.inEditMode = false
-    if(this.authService.currentUserValue==null){
-      this.router.navigate(['/login'])
+    this.profileForm = {} as FormGroup;
+    this.inEditMode = false;
+    if (this.authService.currentUserValue == null) {
+      this.router.navigate(['/login']);
     }
-    this.currentUser = {} as IUserFormData
+    this.currentUser = {} as IUserFormData;
   }
 
   ngOnInit() {
@@ -37,10 +36,10 @@ export class ProfileComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
-    this.profileForm.disable()
-    this.fetchUserData(this.authService.currentUserValue.id.toString())
+    this.profileForm.disable();
+    this.fetchUserData(this.authService.currentUserValue.id.toString());
   }
 
   get f() {
@@ -55,15 +54,12 @@ export class ProfileComponent implements OnInit {
     }
     this.loading = true;
 
-      this.currentUser.firstName = this.profileForm.get('firstName')?.value
-      this.currentUser.lastName = this.profileForm.get('lastName')?.value
-      this.currentUser.email = this.profileForm.get('email')?.value
-      this.currentUser.password = this.profileForm.get('password')?.value
-    
-    this.updateUserDetails(
-      this.currentUser.id.toString(),
-      this.currentUser
-    );
+    this.currentUser.firstName = this.profileForm.get('firstName')?.value;
+    this.currentUser.lastName = this.profileForm.get('lastName')?.value;
+    this.currentUser.email = this.profileForm.get('email')?.value;
+    this.currentUser.password = this.profileForm.get('password')?.value;
+
+    this.updateUserDetails(this.currentUser.id.toString(), this.currentUser);
   }
 
   private fetchUserData(id: string) {
@@ -76,8 +72,8 @@ export class ProfileComponent implements OnInit {
           firstName: this.currentUser.firstName,
           lastName: this.currentUser.lastName,
           email: this.currentUser.email,
-          password: this.currentUser.password
-        }
+          password: this.currentUser.password,
+        };
 
         this.profileForm.setValue(displayData);
 
@@ -93,9 +89,12 @@ export class ProfileComponent implements OnInit {
     this.userService.updateUser(id, user).subscribe(
       (response) => {
         if (response) {
-          this.loading = false;
-          this.inEditMode = false;
-          this.fetchUserData(id);
+          let requestData = { email: user.email, password: user.password };
+          this.authService.login(requestData).subscribe((response) => {
+            this.loading = false;
+            this.inEditMode = false;
+            this.fetchUserData(id);
+          });
         }
       },
       (error) => {
@@ -113,5 +112,4 @@ export class ProfileComponent implements OnInit {
       this.profileForm.disable();
     }
   }
-
 }

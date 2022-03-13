@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IPaymentMethodData } from 'src/app/models/pay-method.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { ValidMonthYear } from 'src/app/shared/month-year.validator';
 
 @Component({
   selector: 'app-payment-details',
@@ -20,6 +21,8 @@ export class PaymentDetailsComponent implements OnInit {
   currentPaymentMethod: IPaymentMethodData;
   selectedPaymentIndex: number;
   backgroundColorArray: { background: string }[];
+  monthsArray: number[]
+  yearsArray: number[]
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +35,9 @@ export class PaymentDetailsComponent implements OnInit {
     this.currentPaymentMethod = {} as IPaymentMethodData;
     this.selectedPaymentIndex = -1;
     this.inAddMode = false;
+
+    this.monthsArray = []
+    this.yearsArray = []
     if (this.authService.currentUserValue == null) {
       this.router.navigate(['/login']);
     }
@@ -49,7 +55,15 @@ export class PaymentDetailsComponent implements OnInit {
       month: ['', Validators.required],
       year: ['', Validators.required],
       cvv: ['', [Validators.required, Validators.pattern('^[1-9]{3,3}$')]],
+    },{
+      validator: ValidMonthYear('month', 'year'),
     });
+
+    this.monthsArray = Array.from({length: 12}, (_, i) => i + 1)
+
+    let currentYear = new Date().getFullYear()
+    for(let i=0; i<10; i++) this.yearsArray.push(currentYear++)
+
     this.fetchPaymentDetails(this.currentUser.id.toString());
   }
 

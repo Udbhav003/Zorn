@@ -19,6 +19,8 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.currentUserValue
+    this.authService.currentUser.subscribe((response)=>{
+      this.currentUser = response;
+    })
   }
 }

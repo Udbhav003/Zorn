@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     if(this.userForm.valid){
       this.authService.login(this.userForm.getRawValue()).subscribe(
         (response: IUserFormData)=>{
-          console.log(response)
           if(response!=null){
             this.router.navigate(['/home']);
           }

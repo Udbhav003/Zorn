@@ -11,6 +11,15 @@ i{
 
 }
 
+.logout-btn:hover{
+    border-color: #1CBBEA;
+    background-color: #1CBBEA;
+    color: #eee;
+    font-weight: 500;
+    border-width: 2px;
+
+}
+
 .navbar-dark .nav-item .nav-link{
     font-weight: 500;
 }

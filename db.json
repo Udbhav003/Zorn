@@ -19,8 +19,8 @@
         {
           "fullName": "Udbhav Kishor Sinha",
           "creditCardNo": 4325234326334632,
-          "month": "09",
-          "year": "2023",
+          "month": 9,
+          "year": 2023,
           "cvv": 512
         }
       ]
@@ -38,6 +38,38 @@
           "city": "Katihar",
           "state": "Bihar",
           "landmark": "Near E. Powerhouse"
+        }
+      ]
+    },
+    {
+      "firstName": "Binay",
+      "lastName": "Kumar",
+      "email": "binaykr002@gmail.com",
+      "password": "123456",
+      "cPassword": "123456",
+      "id": 500453,
+      "addresses": [
+        {
+          "houseNo": "Mill Tola, Aminabad",
+          "city": "Katihar",
+          "state": "Bihar",
+          "landmark": "Near Durga Mandir"
+        }
+      ],
+      "paymentMethods": [
+        {
+          "fullName": "Binay Kumar",
+          "creditCardNo": 5322626234623524,
+          "month": 1,
+          "year": 2025,
+          "cvv": 524
+        },
+        {
+          "fullName": "Rishita Kashyap",
+          "creditCardNo": 5335324623456345,
+          "month": 10,
+          "year": 2022,
+          "cvv": 645
         }
       ]
     }
@@ -219,10 +251,20 @@
     {
       "id": 977105,
       "userId": "545343",
+      "items": []
+    },
+    {
+      "id": 825477,
+      "userId": "506994",
+      "items": []
+    },
+    {
+      "id": 375263,
+      "userId": "500453",
       "items": [
         {
           "feedId": 45,
-          "id": 811265,
+          "id": 574079,
           "restaurant": "reddys biriyani zone",
           "dishName": "roasted chicken biriyani",
           "description": "Indian Restaurant",
@@ -232,7 +274,7 @@
         },
         {
           "feedId": 30,
-          "id": 255770,
+          "id": 835163,
           "restaurant": "kabablo",
           "dishName": "Cajun spiced chicken",
           "description": "Indian Restaurant",
@@ -241,31 +283,26 @@
           "imageUrl": "https://picsum.photos/640/400"
         },
         {
-          "feedId": 17,
-          "id": 326905,
-          "restaurant": "al arabia",
-          "dishName": "Chicken shawarma",
-          "description": "Lebaneese style Restaurant",
-          "rating": 4.2,
-          "cost": 120,
+          "feedId": 11,
+          "id": 880385,
+          "restaurant": "main land china",
+          "dishName": "Veg Momos",
+          "description": "Chineese Restaurant",
+          "rating": 3.9,
+          "cost": 250,
           "imageUrl": "https://picsum.photos/640/400"
         },
         {
-          "feedId": 77,
-          "id": 419152,
-          "restaurant": "beijing bites",
-          "dishName": "cripy fried chicken momos",
-          "description": "Chineese Restaurant",
-          "rating": 4.2,
-          "cost": 180,
+          "feedId": 30,
+          "id": 903121,
+          "restaurant": "kabablo",
+          "dishName": "Cajun spiced chicken",
+          "description": "Indian Restaurant",
+          "rating": 4.1,
+          "cost": 230,
           "imageUrl": "https://picsum.photos/640/400"
         }
       ]
-    },
-    {
-      "id": 825477,
-      "userId": "506994",
-      "items": []
     }
   ]
 }
