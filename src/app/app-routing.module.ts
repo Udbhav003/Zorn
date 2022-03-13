@@ -17,7 +17,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: FoodListingComponent,
+        pathMatch: 'full',
+        redirectTo: 'home',
       },
       {
         path: 'home',
@@ -25,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'cart',
-        component: CartComponent
+        component: CartComponent,
       },
       {
         path: 'settings',
@@ -33,7 +34,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: ProfileComponent,
+            pathMatch: 'full',
+            redirectTo: 'profile',
           },
           {
             path: 'profile',
@@ -41,14 +43,14 @@ const routes: Routes = [
           },
           {
             path: 'address',
-            component: AddressComponent
+            component: AddressComponent,
           },
           {
             path: 'payment-details',
-            component: PaymentDetailsComponent
-          }
-        ]
-      }
+            component: PaymentDetailsComponent,
+          },
+        ],
+      },
     ],
   },
   { path: 'register', component: RegisterComponent },

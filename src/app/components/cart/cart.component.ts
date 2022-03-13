@@ -4,6 +4,7 @@ import { ICartData } from 'src/app/models/cart.model';
 import { IFoodData } from 'src/app/models/food.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -24,10 +25,12 @@ export class CartComponent implements OnInit {
   tax: number;
   subTotal: number;
   cartTotal: number;
+  disableCheckOut: boolean;
 
   constructor(
     private cartService: CartService,
     private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -37,6 +40,7 @@ export class CartComponent implements OnInit {
     this.subTotal = 0;
     this.cartTotal = 0;
     this.tax = 0;
+    this.disableCheckOut = true;
   }
 
   ngOnInit(): void {
@@ -44,6 +48,9 @@ export class CartComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.fetchCartList();
+    this.disableCheckoutIfAddressNotFound(
+      this.authService.currentUserValue.id.toString()
+    );
   }
 
   async fetchCartList() {
@@ -97,7 +104,29 @@ export class CartComponent implements OnInit {
       });
   }
 
+  private disableCheckoutIfAddressNotFound(id: string) {
+    this.userService.getUserData(id).subscribe((response) => {
+      if (response.addresses != null && response.addresses.length > 0) {
+        this.disableCheckOut = false;
+      } else {
+        this.disableCheckOut = true;
+      }
+    });
+  }
+
   public navigateToFoodList() {
     this.router.navigate(['../home'], { relativeTo: this.activatedRoute });
+  }
+
+  public navigateToAddress() {
+    this.router.navigate(['../settings/address'], {
+      relativeTo: this.activatedRoute,
+    });
+  }
+
+  public navigateToPaymentDetails() {
+    this.router.navigate(['../settings/payment-details'], {
+      relativeTo: this.activatedRoute,
+    });
   }
 }

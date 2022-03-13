@@ -16,6 +16,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AddressComponent } from './components/address/address.component';
 import { PaymentDetailsComponent } from './components/payment-details/payment-details.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PaymentDetailsComponent } from './components/payment-details/payment-de
     SettingsComponent,
     ProfileComponent,
     AddressComponent,
-    PaymentDetailsComponent
+    PaymentDetailsComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUserFormData } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { MustMatch } from 'src/app/shared/must-match.validator';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -31,16 +32,24 @@ export class RegisterComponent implements OnInit {
   }
 
   public initUserForm(): void {
-    this.userForm = this.formBuilder.group({
-      firstName: [
-        '',
-        [Validators.required, Validators.pattern('^[a-z A-Z]+$')],
-      ],
-      lastName: ['', [Validators.required, Validators.pattern('^[a-z A-Z]+$')]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      cPassword: ['', [Validators.required]],
-    });
+    this.userForm = this.formBuilder.group(
+      {
+        firstName: [
+          '',
+          [Validators.required, Validators.pattern('^[a-z A-Z]+$')],
+        ],
+        lastName: [
+          '',
+          [Validators.required, Validators.pattern('^[a-z A-Z]+$')],
+        ],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]],
+        cPassword: ['', [Validators.required]],
+      },
+      {
+        validator: MustMatch('password', 'cPassword'),
+      }
+    );
   }
 
   get userFormControls() {
@@ -62,7 +71,7 @@ export class RegisterComponent implements OnInit {
               timer: 1500,
             });
           } else {
-            let user = this.userForm.getRawValue()
+            let user = this.userForm.getRawValue();
             user.id = Math.floor(Math.random() * 999999);
             this.authService.register(user).subscribe(
               (response: IUserFormData[]) => {

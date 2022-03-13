@@ -188,6 +188,19 @@
                   <p class="errorText">Confirm Password is required</p>
                 </div>
               </div>
+              <div
+                *ngIf="isFormSubmitted && userFormControls['cPassword'].errors"
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="
+                    userFormControls['cPassword'].errors &&
+                    userFormControls['cPassword'].errors['mustMatch']
+                  "
+                >
+                  <p class="errorText">Password Mismatch</p>
+                </div>
+              </div>
             </div>
           </div>
         <button

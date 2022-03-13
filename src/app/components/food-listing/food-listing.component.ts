@@ -18,6 +18,7 @@ export class FoodListingComponent implements OnInit {
   cart: ICartData;
   cartData: IFoodData[];
   isNewRecord: boolean;
+  searchInputText: string;
 
   constructor(
     private foodService: FoodService,
@@ -30,6 +31,7 @@ export class FoodListingComponent implements OnInit {
     this.cartData = [];
     this.cart = {} as ICartData;
     this.isNewRecord = true;
+    this.searchInputText = ""
   }
 
   ngOnInit(): void {

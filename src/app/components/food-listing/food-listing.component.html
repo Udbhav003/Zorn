@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="d-flex justify-content-center h-100">
     <div class="searchbar col-lg-8 col-md-10 col-sm-12">
-      <input class="search_input" type="text" name="" placeholder="Search..." />
+      <input class="search_input" type="text" name="" placeholder="Search..." [(ngModel)]="searchInputText" />
       <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
     </div>
   </div>
 
   <div class="row food-list-container">
     <div
-      *ngFor="let food of foods; let i = index"
+      *ngFor="let food of foods | filter: searchInputText"
       class="card col-lg-3 col-md-4 col-sm-8 mx-2"
     >
       <a

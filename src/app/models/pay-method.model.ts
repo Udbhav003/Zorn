@@ -1,7 +1,8 @@
 export interface IPaymentMethodData {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
+    fullName: string;
+    creditCardNo: string;
+    month: string;
+    year: string;
+    cvv:string
   }
   

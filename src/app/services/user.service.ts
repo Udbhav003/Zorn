@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { IAddressData } from '../models/address.model';
+import { IPaymentMethodData } from '../models/pay-method.model';
 import { IUserFormData } from '../models/user.model';
 
 @Injectable({
@@ -25,6 +26,21 @@ export class UserService {
   ): Observable<boolean> {
     return this.http.patch<boolean>('http://localhost:3000/users/' + id, {
       addresses: address,
+    });
+  }
+
+  public deletePaymentMethod(id: string, methods: IPaymentMethodData[]): Observable<boolean> {
+    return this.http.patch<boolean>('http://localhost:3000/users/' + id, {
+      paymentMethods: methods,
+    });
+  }
+
+  public updatePaymentMethods(
+    id: string,
+    paymentMethods: IPaymentMethodData[]
+  ): Observable<boolean> {
+    return this.http.patch<boolean>('http://localhost:3000/users/' + id, {
+      paymentMethods: paymentMethods,
     });
   }
 

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-8">
       <h4 class="mt-4 mb-4 font-weight-bold">Shopping Cart</h4>
-      <div *ngIf="cartTotal>0" class="table-cart">
+      <div *ngIf="cartTotal > 0" class="table-cart">
         <table class="table table-striped cart-data">
           <thead class="thead-light">
             <tr>
@@ -53,7 +53,7 @@
         </table>
       </div>
     </div>
-    <div *ngIf="cartTotal>0" class="col-lg-4">
+    <div *ngIf="cartTotal > 0" class="col-lg-4">
       <h4 class="mt-4 mb-4 font-weight-bold">Cart Summary</h4>
       <table class="table table-borderless card-bg px-3">
         <tbody>
@@ -74,7 +74,7 @@
             </td>
           </tr>
           <tr>
-            <td class="text-left"><h5  class="font-weight-bold">Total</h5></td>
+            <td class="text-left"><h5 class="font-weight-bold">Total</h5></td>
             <td class="text-right">
               <h4>
                 <strong>{{ cartTotal | currency: "INR":"symbol" }}</strong>
@@ -84,23 +84,39 @@
         </tbody>
       </table>
       <div class="d-flex card-bg px-4">
-        <button type="button" class="btn btn-outline-primary w-100 mr-2" (click)="navigateToFoodList()">
-            Continue Shopping
-          </button>
-          <button type="button" class="btn btn-success w-100">
-            Checkout Now
-          </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary w-100 mr-2"
+          (click)="navigateToFoodList()"
+        >
+          Continue Shopping
+        </button>
+        <button
+          type="button"
+          class="btn btn-success w-100"
+          [disabled]="disableCheckOut"
+        >
+          Checkout Now
+        </button>
       </div>
-      
+
       <div class="d-block mt-3 card-bg px-4">
-        <button type="button" class="btn btn-outline-primary d-block w-100" (click)="navigateToFoodList()">
-            Add Address
-          </button>
-          <button type="button" class="btn btn-primary d-block w-100 mt-3">
-            Add Payment Details
-          </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary d-block w-100"
+          (click)="navigateToAddress()"
+        >
+          <span *ngIf="disableCheckOut">Add </span
+          ><span *ngIf="!disableCheckOut">Edit </span>Address
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary d-block w-100 mt-3"
+          (click)="navigateToPaymentDetails()"
+        >
+          Add Payment Method
+        </button>
       </div>
-      
     </div>
   </div>
 </div>

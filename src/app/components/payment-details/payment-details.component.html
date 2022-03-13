@@ -1,1 +1,143 @@
-<p>payment-details works!</p>
+<div class="container-fluid">
+  <div class="d-flex header-container">
+    <h4 class="mt-4 mb-4 font-weight-bold w-100">Payment Details</h4>
+    <button
+      class="btn btn-sm btn-danger h-50"
+      *ngIf="selectedPaymentIndex != -1"
+      (click)="deleteCurrentPaymentMethod()"
+    >
+      <i class="fa fa-trash"></i>
+    </button>
+    <button
+      class="btn btn-sm btn-primary h-50 ml-2"
+      *ngIf="selectedPaymentIndex != -1"
+      (click)="toggleAdd()"
+    >
+      <i [ngClass]="inAddMode ? 'fa fa-times' : 'fa fa-plus'"></i>
+    </button>
+  </div>
+
+  <div
+    *ngIf="selectedPaymentIndex != -1 && !inAddMode"
+    class="row payment-methods-list-container"
+  >
+    <div
+      *ngFor="let method of allPaymentMethods; let i = index"
+      class="card px-2 mr-2 mb-2 payment-method-card"
+      (click)="selectCard(i)"
+      [ngStyle]="backgroundColorArray[i]"
+      [ngClass]="
+        i == selectedPaymentIndex
+          ? 'selected-payment-method-card'
+          : 'payment-method-card'
+      "
+    >
+      <div class="card-body px-1 pb-1">
+        <h6 class="card-title">{{ method.fullName | titlecase }}</h6>
+        <div class="d-flex w-100">
+          <p class="card-text text-small w-100">{{ method.creditCardNo }}</p>
+          <p class="card-text text-small text-right ml-3">
+            {{ method.month }}/{{ method.year }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          formControlName="fullName"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['fullName'].errors }"
+        />
+        <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+          <div *ngIf="f['fullName'].errors['required']">
+            Full Name is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="creditCardNo">Credit Card No.</label>
+        <input
+          type="number"
+          formControlName="creditCardNo"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['creditCardNo'].errors }"
+        />
+        <div
+          *ngIf="submitted && f['creditCardNo'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['creditCardNo'].errors['required']">
+            Credit Card Number is required
+          </div>
+        </div>
+        <div
+          *ngIf="submitted && f['creditCardNo'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['creditCardNo'].errors['pattern']">
+            Credit Card Number should contain 16 digits
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="month">Month</label>
+        <input
+          type="text"
+          formControlName="month"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['month'].errors }"
+        />
+        <div *ngIf="submitted && f['month'].errors" class="invalid-feedback">
+          <div *ngIf="f['month'].errors['required']">Month is required</div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="year">Year</label>
+        <input
+          type="text"
+          formControlName="year"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['year'].errors }"
+        />
+        <div *ngIf="submitted && f['year'].errors" class="invalid-feedback">
+          <div *ngIf="f['year'].errors['required']">Year is required</div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="cvv">CVV</label>
+        <input
+          type="number"
+          formControlName="cvv"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['cvv'].errors }"
+        />
+        <div *ngIf="submitted && f['cvv'].errors" class="invalid-feedback">
+          <div *ngIf="f['cvv'].errors['required']">CVV is required</div>
+        </div>
+        <div *ngIf="submitted && f['cvv'].errors" class="invalid-feedback">
+          <div *ngIf="f['cvv'].errors['pattern']">
+            CVV should contain 3 digits
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-3" *ngIf="inAddMode">
+      <button [disabled]="loading" class="btn btn-primary">
+        <span
+          *ngIf="loading"
+          class="spinner-border spinner-border-sm mr-1"
+        ></span>
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
