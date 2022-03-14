@@ -17,6 +17,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AddressComponent } from './components/address/address.component';
 import { PaymentDetailsComponent } from './components/payment-details/payment-details.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { TrackingComponent } from './components/tracking/tracking.component';
+import { AuthGuard } from './shared/authguard';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     ProfileComponent,
     AddressComponent,
     PaymentDetailsComponent,
-    FilterPipe
+    FilterPipe,
+    TrackingComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     ReactiveFormsModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

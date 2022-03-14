@@ -5,6 +5,8 @@ import { IFoodData } from 'src/app/models/food.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
+import { Helper } from 'src/app/utils/helper.util';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -57,38 +59,65 @@ export class CartComponent implements OnInit {
     this.cartService
       .getCartItems(this.authService.currentUserValue.id.toString())
       .subscribe((response) => {
-        this.subTotal = 0;
-        this.cartTotal = 0;
-        this.tax = 0;
-        this.displayData = [];
-        this.cart = response[0];
-        this.cartData = response[0].items;
-        for (let food of response[0].items) {
-          let found = false;
-          let index: number = 0;
-          for (let i = 0; i < this.displayData.length; i++) {
-            if (food.feedId === this.displayData[i].feedId) {
-              found = true;
-              index = i;
-              break;
+        if (
+          response != null &&
+          response[0].items != null &&
+          response[0].items.length > 0
+        ) {
+          this.subTotal = 0;
+          this.cartTotal = 0;
+          this.tax = 0;
+          this.displayData = [];
+          this.cart = response[0];
+          this.cartData = response[0].items;
+          for (let food of response[0].items) {
+            let found = false;
+            let index: number = 0;
+            for (let i = 0; i < this.displayData.length; i++) {
+              if (food.feedId === this.displayData[i].feedId) {
+                found = true;
+                index = i;
+                break;
+              }
             }
+            if (found) {
+              this.displayData[index].quantity += 1;
+              this.displayData[index].totalPrice =
+                food.cost * this.displayData[index].quantity;
+            } else {
+              this.displayData.push({
+                feedId: food.feedId,
+                quantity: 1,
+                totalPrice: food.cost,
+                food: food,
+              });
+            }
+            this.subTotal += food.cost;
           }
-          if (found) {
-            this.displayData[index].quantity += 1;
-            this.displayData[index].totalPrice =
-              food.cost * this.displayData[index].quantity;
-          } else {
-            this.displayData.push({
-              feedId: food.feedId,
-              quantity: 1,
-              totalPrice: food.cost,
-              food: food,
-            });
-          }
-          this.subTotal += food.cost;
+          this.tax = Math.ceil((18 * this.subTotal) / 100);
+          this.cartTotal = this.subTotal + this.tax;
+        } else {
+          Swal.fire({
+            text: 'Cart is Empty!',
+            icon: 'warning',
+            showCancelButton: false,
+            showConfirmButton: true,
+            showClass: {
+              popup: 'animate__animated animate__fadeInUp animate__faster',
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutDown animate__faster',
+            },
+            confirmButtonText: 'Go to home',
+            confirmButtonColor: '#444D89',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['../home'], {
+                relativeTo: this.activatedRoute,
+              });
+            }
+          });
         }
-        this.tax = Math.ceil((18 * this.subTotal) / 100);
-        this.cartTotal = this.subTotal + this.tax;
       });
   }
 
@@ -120,6 +149,13 @@ export class CartComponent implements OnInit {
 
   public navigateToAddress() {
     this.router.navigate(['../settings/address'], {
+      relativeTo: this.activatedRoute,
+    });
+  }
+
+  public navigateToTracking() {
+    Helper.isNextStep = true;
+    this.router.navigate(['../tracking', this.cartTotal], {
       relativeTo: this.activatedRoute,
     });
   }

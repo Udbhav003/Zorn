@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { Helper } from 'src/app/utils/helper.util';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +19,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.currentUserValue == null) {
-      this.router.navigate(['./login']);
+      this.router.navigate(['./login'], {
+        relativeTo: this.activatedRoute,
+      });
     }
+  }
+
+  public navigateToTracking(){
+    Helper.isNextStep = true
+    this.router.navigate(['../tracking',0], {
+      relativeTo: this.activatedRoute,
+    })
   }
 
   public logOut() {

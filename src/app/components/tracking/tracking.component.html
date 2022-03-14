@@ -1,0 +1,449 @@
+<!-- Button trigger modal -->
+<button
+  #openModal
+  type="button"
+  data-toggle="modal"
+  [hidden]="true"
+  data-backdrop="static"
+  data-keyboard="false"
+  data-target="#exampleModal"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Complete Payment</h5><span class="text-success text-right font-weight-bold">{{totalAmountToPay | currency:"INR":"symbol"}}</span>
+        <button
+          #closebutton
+          type="button"
+          class="close"
+          [hidden]="true"
+          data-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="bg-white shadow-sm py-2 px-2">
+                    <ul
+                      role="tablist"
+                      class="nav bg-light nav-pills rounded nav-fill"
+                    >
+                      <li class="nav-item">
+                        <a
+                          data-toggle="pill"
+                          (click)="makeBankSectionVisible()"
+                          class="nav-link active"
+                        >
+                          <i class="fa fa-university mr-2"></i> Bank
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          data-toggle="pill"
+                          (click)="makeCreditCardSectionVisible()"
+                          class="nav-link"
+                        >
+                          <i class="fa fa-credit-card mr-2"></i> Credit Card
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          data-toggle="pill"
+                          (click)="makeQRSectionVisible()"
+                          class="nav-link"
+                        >
+                          <i class="fa fa-qrcode mr-2"></i> Scan QR
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="tab-content mt-3">
+                    <!-- Bank Section Start -->
+                    <div
+                      class="tab-pane fade show active"
+                      *ngIf="bankSectionVisible"
+                    >
+                      <form [formGroup]="bankForm">
+                        <div class="form-row">
+                          <div class="form-group col-md-12">
+                            <label for="bankName">Bank Name</label>
+                            <select
+                              class="form-control"
+                              formControlName="bankName"
+                              [ngClass]="{
+                                'is-invalid':
+                                  submitted &&
+                                  bankSectionVisible &&
+                                  bankFormControls['bankName'].errors
+                              }"
+                            >
+                              <option value="" selected disabled>
+                                Select Bank
+                              </option>
+                              <option>State Bank of India</option>
+                              <option>Central Bank of India</option>
+                              <option>HDFC Bank</option>
+                              <option>ICICI Bank</option>
+                              <option>Axis Bank</option>
+                              <option>Bank of Baroda</option>
+                              <option>Punjab National Bank</option>
+                              <option>Induslnd Bank</option>
+                              <option>Canara Bank</option>
+                              <option>YES Bank</option>
+                            </select>
+                            <div
+                              *ngIf="
+                                submitted &&
+                                bankSectionVisible &&
+                                bankFormControls['bankName'].errors
+                              "
+                              class="invalid-feedback"
+                            >
+                              <div
+                                *ngIf="
+                                  bankFormControls['bankName'].errors[
+                                    'required'
+                                  ]
+                                "
+                              >
+                                Bank Selection is required
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="accountHolderName"
+                              >Account Holder Name</label
+                            >
+                            <input
+                              type="text"
+                              formControlName="accountHolderName"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid':
+                                  submitted &&
+                                  bankSectionVisible &&
+                                  bankFormControls['accountHolderName'].errors
+                              }"
+                            />
+                            <div
+                              *ngIf="
+                                submitted &&
+                                bankSectionVisible &&
+                                bankFormControls['accountHolderName'].errors
+                              "
+                              class="invalid-feedback"
+                            >
+                              <div
+                                *ngIf="
+                                  bankFormControls['accountHolderName'].errors[
+                                    'required'
+                                  ]
+                                "
+                              >
+                                Account Holder Name is required
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="accountNo">Account No.</label>
+                            <input
+                              type="number"
+                              formControlName="accountNo"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid':
+                                  submitted &&
+                                  bankSectionVisible &&
+                                  bankFormControls['accountNo'].errors
+                              }"
+                            />
+                            <div
+                              *ngIf="
+                                submitted &&
+                                bankSectionVisible &&
+                                bankFormControls['accountNo'].errors
+                              "
+                              class="invalid-feedback"
+                            >
+                              <div
+                                *ngIf="
+                                  bankFormControls['accountNo'].errors[
+                                    'required'
+                                  ]
+                                "
+                              >
+                                Account Number is required
+                              </div>
+                            </div>
+                            <div
+                              *ngIf="
+                                submitted &&
+                                bankSectionVisible &&
+                                bankFormControls['accountNo'].errors
+                              "
+                              class="invalid-feedback"
+                            >
+                              <div
+                                *ngIf="
+                                  bankFormControls['accountNo'].errors[
+                                    'pattern'
+                                  ]
+                                "
+                              >
+                                Account Number should lie between 10-16 digits
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- Bank Section End -->
+
+                    <!-- Credit Card Section Start -->
+                    <div
+                      class="tab-pane fade show active"
+                      *ngIf="creditCardSectionVisible"
+                    >
+                      <!-- Existing Credit Card List Start -->
+                      <div
+                        *ngIf="selectedPaymentIndex != -1 && !inAddMode"
+                        class="row payment-methods-list-container"
+                      >
+                        <div
+                          *ngFor="
+                            let method of allPaymentMethods;
+                            let i = index
+                          "
+                          class="card px-2 mr-2 my-2 payment-method-card"
+                          (click)="selectCard(i)"
+                          [ngStyle]="backgroundColorArray[i]"
+                          [ngClass]="
+                            i == selectedPaymentIndex
+                              ? 'selected-payment-method-card'
+                              : 'payment-method-card'
+                          "
+                        >
+                          <div class="card-body px-1 pb-1">
+                            <h6 class="card-title">
+                              {{ method.fullName | titlecase }}
+                            </h6>
+                            <div class="d-flex w-100">
+                              <p class="card-text text-small w-100">
+                                {{ method.creditCardNo }}
+                              </p>
+                              <p class="card-text text-small text-right ml-3">
+                                {{ method.month }}/{{ method.year }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Existing Credit Card List End -->
+                      <form [formGroup]="creditCardForm">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="fullName">Full Name</label>
+                            <input
+                              type="text"
+                              formControlName="fullName"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid': submitted && f['fullName'].errors
+                              }"
+                            />
+                            <div
+                              *ngIf="submitted && f['fullName'].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f['fullName'].errors['required']">
+                                Full Name is required
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="creditCardNo">Credit Card No.</label>
+                            <input
+                              type="number"
+                              formControlName="creditCardNo"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid':
+                                  submitted && f['creditCardNo'].errors
+                              }"
+                            />
+                            <div
+                              *ngIf="submitted && f['creditCardNo'].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f['creditCardNo'].errors['required']">
+                                Credit Card Number is required
+                              </div>
+                            </div>
+                            <div
+                              *ngIf="submitted && f['creditCardNo'].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f['creditCardNo'].errors['pattern']">
+                                Credit Card Number should contain 16 digits
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <label for="month">Month</label>
+                            <select
+                              formControlName="month"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid': submitted && f['month'].errors
+                              }"
+                            >
+                              <option selected disabled [ngValue]="null">
+                                Select Month
+                              </option>
+                              <option
+                                *ngFor="let month of monthsArray"
+                                [ngValue]="month"
+                              >
+                                {{ month }}
+                              </option>
+                            </select>
+
+                            <div
+                              *ngIf="submitted && f['month'].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f['month'].errors['required']">
+                                Month is required
+                              </div>
+                            </div>
+                            <div
+                              *ngIf="submitted && f['month'].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f['month'].errors['invalidMonth']">
+                                Can't select past month
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="year">Year</label>
+                            <select
+                              formControlName="year"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid': submitted && f['year'].errors
+                              }"
+                            >
+                              <option selected disabled [ngValue]="null">
+                                Select Year
+                              </option>
+                              <option
+                                *ngFor="let year of yearsArray"
+                                [ngValue]="year"
+                              >
+                                {{ year }}
+                              </option>
+                            </select>
+                            <div
+                              *ngIf="submitted && f['year'].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f['year'].errors['required']">
+                                Year is required
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="cvv">CVV</label>
+                            <input
+                              type="number"
+                              formControlName="cvv"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid': submitted && f['cvv'].errors
+                              }"
+                            />
+                            <div
+                              *ngIf="submitted && f['cvv'].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f['cvv'].errors['required']">
+                                CVV is required
+                              </div>
+                            </div>
+                            <div
+                              *ngIf="submitted && f['cvv'].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f['cvv'].errors['pattern']">
+                                CVV should contain 3 digits
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- Credit Card Section End -->
+
+                    <!-- QR Section Start -->
+                    <div
+                      class="tab-pane fade show active"
+                      *ngIf="qrSectionVisible"
+                    >
+                      <h6 class="pb-2">Scan below QR Code to pay</h6>
+                      <div class="text-center">
+                        <img
+                          height="200"
+                          width="200"
+                          src="./assets/qrCode.png"
+                        />
+                      </div>
+
+                      <p class="text-muted">
+                        Note: After scanning the QR Code, you will be redirected
+                        to an external page. Once payment is done, please come
+                        back and press Confirm Payment button to confirm your
+                        order.
+                      </p>
+                    </div>
+                    <!-- QR Section End -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            (click)="onPaymentConfirmed()"
+            class="btn btn-success w-100"
+          >
+            Confirm Payment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

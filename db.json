@@ -12,13 +12,26 @@
           "city": "Katihar",
           "state": "Bihar",
           "landmark": "Near Powerhouse"
+        },
+        {
+          "houseNo": "Mill Tola, Aminabad, PO Semapur Factory",
+          "city": "Katihar",
+          "state": "Bihar",
+          "landmark": "Near Electric Powerhouse"
         }
       ],
       "paymentMethods": [
         {
           "fullName": "Udbhav Kishor Sinha",
-          "creditCardNo": 6342734642345432,
-          "month": 3,
+          "creditCardNo": 4543537654534554,
+          "month": 6,
+          "year": 2024,
+          "cvv": 987
+        },
+        {
+          "fullName": "Rishita Kashyap",
+          "creditCardNo": 9849032743080936,
+          "month": 6,
           "year": 2023,
           "cvv": 534
         }
@@ -36,173 +49,214 @@
     {
       "feedId": 45,
       "id": 1,
-      "restaurant": "reddys biriyani zone",
-      "dishName": "roasted chicken biriyani",
+      "restaurant": "Reddys Biriyani Zone",
+      "dishName": "Roasted Chicken Biryani",
       "description": "Indian Restaurant",
       "rating": 4,
       "cost": 190,
-      "imageUrl": "https://picsum.photos/640/400"
+      "imageUrl": "https://static.wixstatic.com/media/5b50cf_00f9833604fc4b659023a49603d25040~mv2.jpg/v1/fill/w_640,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/5b50cf_00f9833604fc4b659023a49603d25040~mv2.jpg"
     },
     {
       "feedId": 30,
       "id": 2,
-      "restaurant": "kabablo",
-      "dishName": "Cajun spiced chicken",
+      "restaurant": "Kabablo",
+      "dishName": "Cajun Spiced Chicken",
       "description": "Indian Restaurant",
       "rating": 4.1,
       "cost": 230,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 11,
-      "id": 3,
-      "restaurant": "main land china",
-      "dishName": "Veg Momos",
-      "description": "Chineese Restaurant",
-      "rating": 3.9,
-      "cost": 250,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 77,
-      "id": 4,
-      "restaurant": "beijing bites",
-      "dishName": "cripy fried chicken momos",
-      "description": "Chineese Restaurant",
-      "rating": 4.2,
-      "cost": 180,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 23,
-      "id": 5,
-      "restaurant": "mcdonald's",
-      "dishName": "American cheese burger",
-      "description": "American Restaurant",
-      "rating": 3.9,
-      "cost": 260,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 37,
-      "id": 6,
-      "restaurant": "KFC",
-      "dishName": "KFC chicken bucket",
-      "description": "American Restaurant",
-      "rating": 4.1,
-      "cost": 599,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 5,
-      "id": 7,
-      "restaurant": "home kitchen services",
-      "dishName": "mix non veg noodles",
-      "description": "Chineese Restaurant",
-      "rating": 3.9,
-      "cost": 100,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 59,
-      "id": 8,
-      "restaurant": "hotel shalimar",
-      "dishName": "chicken fried rice",
-      "description": "chineese Restaurant",
-      "rating": 4.4,
-      "cost": 190,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 91,
-      "id": 9,
-      "restaurant": "al arabia",
-      "dishName": "Chicken shawarma",
-      "description": "Lebaneese style Restaurant",
-      "rating": 4.2,
-      "cost": 120,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 62,
-      "id": 10,
-      "restaurant": "al bek",
-      "dishName": "Alfaham Chicken",
-      "description": "Lebaneese style Restaurant",
-      "rating": 4.1,
-      "cost": 230,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 98,
-      "id": 8,
-      "restaurant": "hotel shalimar",
-      "dishName": "chicken fried rice",
-      "description": "chineese Restaurant",
-      "rating": 4.4,
-      "cost": 190,
-      "imageUrl": "https://picsum.photos/640/400"
-    },
-    {
-      "feedId": 17,
-      "id": 9,
-      "restaurant": "al arabia",
-      "dishName": "Chicken shawarma",
-      "description": "Lebaneese style Restaurant",
-      "rating": 4.2,
-      "cost": 120,
-      "imageUrl": "https://picsum.photos/640/400"
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/food-and-drink/2016/02/18/cajun-chicken-xlarge_trans_NvBQzQNjv4Bqeo_i_u9APj8RuoebjoAHt0k9u7HhRJvuo-ZLenGRumA.jpg?imwidth=640"
     },
     {
       "feedId": 27,
-      "id": 10,
+      "id": 3,
       "restaurant": "al bek",
-      "dishName": "Alfaham Chicken",
-      "description": "Lebaneese style Restaurant",
+      "dishName": "Grilled Chicken",
+      "description": "Indian Restaurant",
       "rating": 4.1,
       "cost": 230,
-      "imageUrl": "https://picsum.photos/640/400"
+      "imageUrl": "https://swall.teahub.io/photos/small/316-3161134_grilled-chicken-high-resolution.jpg"
+    },
+    {
+      "feedId": 11,
+      "id": 4,
+      "restaurant": "main land china",
+      "dishName": "Veg Momos",
+      "description": "Chinese Restaurant",
+      "rating": 3.9,
+      "cost": 250,
+      "imageUrl": "https://im.whatshot.in/img/2019/Oct/640x400-2-1571825617.jpg"
+    },
+    {
+      "feedId": 77,
+      "id": 5,
+      "restaurant": "beijing bites",
+      "dishName": "Cripy Fried Chicken Momos",
+      "description": "Chinese Restaurant",
+      "rating": 4.2,
+      "cost": 180,
+      "imageUrl": "https://b.zmtcdn.com/data/dish_photos/c2b/3237884cdacb57494e5e908cf62e7c2b.jpg"
+    },
+    {
+      "feedId": 23,
+      "id": 6,
+      "restaurant": "mcdonald's",
+      "dishName": "American Cheese Burger",
+      "description": "American Restaurant",
+      "rating": 3.9,
+      "cost": 260,
+      "imageUrl": "https://www.gstatic.com/bfe/apps/website/img/h/103637449-burger-fries-640.jpg"
+    },
+    {
+      "feedId": 37,
+      "id": 7,
+      "restaurant": "KFC",
+      "dishName": "KFC Chicken Bucket",
+      "description": "American Restaurant",
+      "rating": 4.1,
+      "cost": 599,
+      "imageUrl": "https://d30fl32nd2baj9.cloudfront.net/media/2017/04/08/kfc.jpg/ALTERNATES/w640/KFC.jpg"
+    },
+    {
+      "feedId": 5,
+      "id": 8,
+      "restaurant": "home kitchen services",
+      "dishName": "Mix Non Veg Noodles",
+      "description": "Chinese Restaurant",
+      "rating": 3.9,
+      "cost": 100,
+      "imageUrl": "https://images.hindustantimes.com/rf/image_size_640x362/HT/p2/2016/01/22/Pictures/_88125e2a-c10c-11e5-b65a-c4d36a19bd7a.jpg"
+    },
+    {
+      "feedId": 59,
+      "id": 9,
+      "restaurant": "hotel shalimar",
+      "dishName": "Chicken Fried Rice",
+      "description": "Chinese Restaurant",
+      "rating": 4.4,
+      "cost": 190,
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/recipes/2022/01/12/HH-Stella-Chicken-and-Rice-Recipes-Chicken-and-Egg-Fried-Rice-002-xlarge_trans_NvBQzQNjv4Bq_JZS6ga0LOK_aFdaMhTiTOLFHmZ5Hvr-6IQvM30R894.jpg?imwidth=640"
+    },
+    {
+      "feedId": 91,
+      "id": 10,
+      "restaurant": "al arabia",
+      "dishName": "Chicken Shawarma",
+      "description": "Lebaneese Restaurant",
+      "rating": 4.2,
+      "cost": 120,
+      "imageUrl": "https://im.whatshot.in/img/2019/Jul/43503562-733889787003499-5059915162946565671-n-1562758073.jpg"
+    },
+    {
+      "feedId": 62,
+      "id": 11,
+      "restaurant": "al bek",
+      "dishName": "Alfaham Chicken",
+      "description": "Lebaneese Restaurant",
+      "rating": 4.1,
+      "cost": 230,
+      "imageUrl": "https://im.whatshot.in/img/2020/Apr/t5-1588160303.jpg"
+    },
+    {
+      "feedId": 98,
+      "id": 12,
+      "restaurant": "Hotel Viola",
+      "dishName": "Peppy Paneer Pizza",
+      "description": "American Restaurant",
+      "rating": 4.4,
+      "cost": 190,
+      "imageUrl": "https://res.cloudinary.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/cfkj8tmeo0ez75tuwije"
+    },
+    {
+      "feedId": 17,
+      "id": 13,
+      "restaurant": "al arabia",
+      "dishName": "Sticky Chicken Thighs",
+      "description": "Lebaneese Restaurant",
+      "rating": 4.2,
+      "cost": 230,
+      "imageUrl": "https://www.telegraph.co.uk/content/dam/recipes/2022/01/20/TELEMMGLPICT000283318371-xlarge_trans_NvBQzQNjv4BqyuLFFzXshuGqnr8zPdDWXhbQKbwj1ZsnNMhuR7O6ySI.jpeg?imwidth=640"
     },
     {
       "feedId": 14,
-      "restaurant": "reddys biriyani zone",
-      "dishName": "roasted chicken biriyani",
+      "restaurant": "fish land",
+      "dishName": "Baked Fish with Oat Crust",
       "description": "Indian Restaurant",
       "rating": 4,
-      "cost": 190,
-      "imageUrl": "https://picsum.photos/640/400",
-      "id": 11
+      "cost": 280,
+      "imageUrl": "https://www.rhodeahead.com/sites/rhodeahead.com/files/images/recipies/fishoats-article-img_0.jpg",
+      "id": 14
     },
     {
       "feedId": 15,
-      "restaurant": "reddys biriyani zone",
-      "dishName": "roasted chicken biriyani",
+      "restaurant": "the food outlet",
+      "dishName": "Pav Bhaji",
       "description": "Indian Restaurant",
       "rating": 4,
-      "cost": 190,
-      "imageUrl": "https://picsum.photos/640/400",
-      "id": 12
+      "cost": 150,
+      "imageUrl": "https://i0.wp.com/cdn.whatsuplife.in/kolkata/blog/2018/09/mumbai-local-kol.jpg",
+      "id": 15
     },
     {
       "feedId": 16,
       "restaurant": "reddys biriyani zone",
-      "dishName": "roasted chicken biriyani",
+      "dishName": "Egg Biryani",
       "description": "Indian Restaurant",
-      "rating": 4,
-      "cost": 190,
-      "unique": 0.5204481863089581,
-      "imageUrl": "https://picsum.photos/640/400",
-      "id": 13
+      "rating": 5,
+      "cost": 240,
+      "imageUrl": "https://greatindianjourney.files.wordpress.com/2015/09/jadoh-rice.jpg?w=640",
+      "id": 16
+    },
+    {
+      "feedId": 69,
+      "restaurant": "hotel viola",
+      "dishName": "Peanut Butter Ice Cream",
+      "description": "American Restaurant",
+      "rating": 3,
+      "cost": 120,
+      "imageUrl": "https://i.pinimg.com/736x/ff/d1/1b/ffd11b564b3dc9d6078412be6f49b344--ice-cream-bars-an-ice-cream.jpg",
+      "id": 17
     }
   ],
   "orders": [
     {
-      "id": 1,
-      "userid": 1,
-      "feedId": 16,
-      "orderstatus": "placed",
-      "paymentStatus": "paid",
-      "orderDateTime": "10/10/2021:7:30pm"
+      "id": 11978,
+      "userId": 346178,
+      "payment": {
+        "accountHolderName": "Binay Kumar",
+        "accountNo": 3698374937,
+        "bankName": "State Bank of India",
+        "paymentMethod": "Account Transfer"
+      },
+      "address": {
+        "houseNo": "Mill Tola, Aminabad, PO Semapur Factory",
+        "city": "Katihar",
+        "state": "Bihar",
+        "landmark": "Near Electric Powerhouse"
+      },
+      "orderStatus": "Placed",
+      "paymentStatus": "Paid",
+      "orderDateTime": "Mon Mar 14 2022 20:35:12 GMT+0530 (India Standard Time)"
+    },
+    {
+      "id": 665738,
+      "userId": 346178,
+      "payment": {
+        "fullName": "Udbhav Kishor Sinha",
+        "creditCardNo": 4543537654534554,
+        "month": 6,
+        "year": 2024,
+        "cvv": 987,
+        "paymentMethod": "Credit Card"
+      },
+      "address": {
+        "houseNo": "Mill Tola, Aminabad, PO Semapur Factory",
+        "city": "Katihar",
+        "state": "Bihar",
+        "landmark": "Near Electric Powerhouse"
+      },
+      "orderStatus": "Placed",
+      "paymentStatus": "Paid",
+      "orderDateTime": "Mon Mar 14 2022 21:19:01 GMT+0530 (India Standard Time)"
     }
   ],
   "cart": [

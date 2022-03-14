@@ -10,6 +10,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { TrackingComponent } from './components/tracking/tracking.component';
+import { AuthGuard } from './shared/authguard';
 
 const routes: Routes = [
   {
@@ -28,6 +30,16 @@ const routes: Routes = [
       {
         path: 'cart',
         component: CartComponent,
+      },
+      {
+        path: 'tracking',
+        component: TrackingComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'tracking/:total',
+        component: TrackingComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings',

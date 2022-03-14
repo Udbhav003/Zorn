@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ICartData } from '../models/cart.model';
 import { IFoodData } from '../models/food.model';
+import { IOrderData } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root',
@@ -47,5 +48,13 @@ export class CartService {
           return response;
         })
       );
+  }
+
+  public createOrder(orderCreationRequest: IOrderData): Observable<boolean> {
+    return this.http.post<boolean>('http://localhost:3000/orders', orderCreationRequest).pipe(
+      map((response) => {
+        return response;
+      })
+    );
   }
 }

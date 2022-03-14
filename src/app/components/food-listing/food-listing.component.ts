@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { FoodService } from 'src/app/services/food.service';
 import Swal from 'sweetalert2';
+import { Helper } from 'src/app/utils/helper.util';
 
 @Component({
   selector: 'app-food-listing',
@@ -31,7 +32,7 @@ export class FoodListingComponent implements OnInit {
     this.cartData = [];
     this.cart = {} as ICartData;
     this.isNewRecord = true;
-    this.searchInputText = '';
+    this.searchInputText = ""
   }
 
   ngOnInit(): void {
@@ -80,7 +81,7 @@ export class FoodListingComponent implements OnInit {
           ' to Cart?</h5></div>',
         showCancelButton: true,
         showClass: {
-          popup: 'animate__animated animate__fadeInUp animate__faster',
+          popup: 'animate__animated animate__fadeInUp animate__faster'
         },
         hideClass: {
           popup: 'animate__animated animate__fadeOutDown animate__faster',
@@ -103,18 +104,21 @@ export class FoodListingComponent implements OnInit {
           '?</h5></div>',
         showCancelButton: true,
         showClass: {
-          popup: 'animate__animated animate__fadeInUp animate__faster',
+          popup: 'animate__animated animate__fadeInUp animate__faster'
         },
         hideClass: {
           popup: 'animate__animated animate__fadeOutDown animate__faster',
         },
         confirmButtonText: 'Place Order',
         confirmButtonColor: '#2d6a4f',
-        cancelButtonColor: '#d33',
+        cancelButtonColor: '#d33'
       }).then((result) => {
         if (result.isConfirmed) {
           //Place Order
-          console.log('Placing Order : ', food);
+          Helper.isNextStep = true;
+          this.router.navigate(['../tracking', food.cost], {
+            relativeTo: this.activatedRoute,
+          });
         }
       });
     }
@@ -183,9 +187,10 @@ export class FoodListingComponent implements OnInit {
       text: msg,
       icon: status,
       showCancelButton: showCancelButton,
+      cancelButtonColor: '#d33',
       showConfirmButton: true,
       showClass: {
-        popup: 'animate__animated animate__fadeInUp animate__faster',
+        popup: 'animate__animated animate__fadeInUp animate__faster'
       },
       hideClass: {
         popup: 'animate__animated animate__fadeOutDown animate__faster',
