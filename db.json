@@ -1,5 +1,30 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 990061,
+      "firstName": "Udbhav",
+      "lastName": "Sinha",
+      "email": "udbhavsinha003@gmail.com",
+      "password": "123456",
+      "paymentMethods": [
+        {
+          "fullName": "Udbhav Kishor Sinha",
+          "creditCardNo": 8465845484455645,
+          "month": 4,
+          "year": 2023,
+          "cvv": 543
+        }
+      ],
+      "addresses": [
+        {
+          "houseNo": "Sector 6, Hoodi",
+          "city": "Bengaluru",
+          "state": "Karnataka",
+          "landmark": "Near Shoprix Mall"
+        }
+      ]
+    }
+  ],
   "foodList": [
     {
       "feedId": 45,
@@ -173,5 +198,11 @@
     }
   ],
   "orders": [],
-  "cart": []
+  "cart": [
+    {
+      "id": 105430,
+      "userId": "990061",
+      "items": []
+    }
+  ]
 }

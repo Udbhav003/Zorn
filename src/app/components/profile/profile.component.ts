@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     this.profileForm = {} as FormGroup;
     this.inEditMode = false;
     if (this.authService.currentUserValue == null) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['../login']);
     }
     this.currentUser = {} as IUserFormData;
   }

@@ -19,12 +19,25 @@ i {
   border-width: 2px;
 }
 
+.footer {
+  position:fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background-color: #222;
+}
+
 .navbar-dark .nav-item .nav-link {
   font-weight: 500;
   -o-transition: all 0.218s;
   -moz-transition: all 0.218s;
   -webkit-transition: all 0.218s;
   transition: all 0.218s;
+}
+
+p{
+  font-size: 12px;
 }
 
 .navbar-dark .nav-item.active .nav-link,

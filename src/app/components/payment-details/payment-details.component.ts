@@ -39,7 +39,7 @@ export class PaymentDetailsComponent implements OnInit {
     this.monthsArray = [];
     this.yearsArray = [];
     if (this.authService.currentUserValue == null) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['../login']);
     }
     this.backgroundColorArray = [];
     this.currentUser = this.authService.currentUserValue;

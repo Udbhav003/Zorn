@@ -13,7 +13,7 @@ export class SettingsComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     if (this.authService.currentUserValue == null) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['../login']);
     }
     this.currentUser = {} as IUserFormData;
   }

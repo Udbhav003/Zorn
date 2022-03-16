@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CommunicationService } from 'src/app/services/communication.service';
-import { Helper } from 'src/app/utils/helper.util';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +12,7 @@ import { Helper } from 'src/app/utils/helper.util';
 export class HomeComponent implements OnInit {
   itemsInCart: boolean;
   cartSize: number;
+  currentTimeStamp : any
 
   constructor(
     private authService: AuthService,
@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
   ) {
     this.itemsInCart = false;
     this.cartSize = 0;
+    setInterval(() => {
+      this.currentTimeStamp = new Date().toString()
+    }, 1);
   }
 
   ngOnInit(): void {

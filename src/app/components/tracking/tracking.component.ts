@@ -77,7 +77,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
     this.yearsArray = [];
 
     if (this.authService.currentUserValue == null) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['../login']);
     }
     this.backgroundColorArray = [];
     this.currentUser = this.authService.currentUserValue;
@@ -147,6 +147,23 @@ export class TrackingComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
         if (response != null && response.length > 0) {
           this.orders = response.reverse();
+        }
+        else{
+          Helper.displayAlert(
+            'warning',
+            'No Orders',
+            true,
+            'Go to home',
+            Colors.WARNING,
+            false,
+            ''
+          ).then((result: any) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['../home'], {
+                relativeTo: this.activatedRoute,
+              });
+            }
+          });
         }
       });
   }

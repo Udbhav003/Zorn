@@ -30,7 +30,7 @@ export class AddressComponent implements OnInit {
     this.currentAddress = {} as IAddressData;
     this.inEditMode = false;
     if (this.authService.currentUserValue == null) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['../login']);
     }
     this.currentUser = this.authService.currentUserValue;
   }

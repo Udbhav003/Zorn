@@ -49,7 +49,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.currentUserValue == null) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['../login']);
     }
     this.fetchCartList();
     this.disableCheckoutIfAddressNotFound(
@@ -66,7 +66,7 @@ export class CartComponent implements OnInit {
         this.tax = 0;
         this.displayData = [];
         if (
-          response != null &&
+          response != null && response.length>0 &&
           response[0].items != null &&
           response[0].items.length > 0
         ) {
@@ -103,7 +103,7 @@ export class CartComponent implements OnInit {
           this.communicationService.setCartSize(0);
           Helper.displayAlert(
             'warning',
-            'Cart is Empty!',
+            'Cart is Empty',
             true,
             'Go to home',
             Colors.WARNING,
