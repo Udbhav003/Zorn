@@ -9,16 +9,16 @@
   background: #fff;
 }
 
-.profile-userpic{
-    text-align: center;
+.profile-userpic {
+  text-align: center;
 }
 
 .profile-userpic img {
-  width: 40%;
-  height: 40%;
-  -webkit-border-radius: 40% !important;
-  -moz-border-radius: 40% !important;
-  border-radius: 40% !important;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
 }
 
 .profile-usertitle {
@@ -75,7 +75,6 @@
   color: #93a3b5;
   font-size: 14px;
   font-weight: 400;
-  
 }
 
 .profile-usermenu ul li a i {
@@ -91,16 +90,15 @@
 }
 
 .profile-usermenu ul li.active {
-    color: #5b9bd1;
-    background-color: #f6f9fb;
-    border-left: 2px solid #5b9bd1;
-    margin-left: -2px;
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
 }
-.profile-usermenu ul li.active a{
-    color: #5b9bd1;
-    font-weight: 500;
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  font-weight: 500;
 }
-
 
 .profile-content {
   padding: 20px;

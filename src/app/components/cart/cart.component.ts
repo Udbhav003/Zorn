@@ -4,9 +4,10 @@ import { ICartData } from 'src/app/models/cart.model';
 import { IFoodData } from 'src/app/models/food.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { CommunicationService } from 'src/app/services/communication.service';
 import { UserService } from 'src/app/services/user.service';
+import { Colors } from 'src/app/shared/colors';
 import { Helper } from 'src/app/utils/helper.util';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -33,6 +34,7 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private authService: AuthService,
     private userService: UserService,
+    private communicationService: CommunicationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -59,17 +61,18 @@ export class CartComponent implements OnInit {
     this.cartService
       .getCartItems(this.authService.currentUserValue.id.toString())
       .subscribe((response) => {
+        this.subTotal = 0;
+        this.cartTotal = 0;
+        this.tax = 0;
+        this.displayData = [];
         if (
           response != null &&
           response[0].items != null &&
           response[0].items.length > 0
         ) {
-          this.subTotal = 0;
-          this.cartTotal = 0;
-          this.tax = 0;
-          this.displayData = [];
           this.cart = response[0];
           this.cartData = response[0].items;
+          this.communicationService.setCartSize(response[0].items.length);
           for (let food of response[0].items) {
             let found = false;
             let index: number = 0;
@@ -97,20 +100,16 @@ export class CartComponent implements OnInit {
           this.tax = Math.ceil((18 * this.subTotal) / 100);
           this.cartTotal = this.subTotal + this.tax;
         } else {
-          Swal.fire({
-            text: 'Cart is Empty!',
-            icon: 'warning',
-            showCancelButton: false,
-            showConfirmButton: true,
-            showClass: {
-              popup: 'animate__animated animate__fadeInUp animate__faster',
-            },
-            hideClass: {
-              popup: 'animate__animated animate__fadeOutDown animate__faster',
-            },
-            confirmButtonText: 'Go to home',
-            confirmButtonColor: '#444D89',
-          }).then((result) => {
+          this.communicationService.setCartSize(0);
+          Helper.displayAlert(
+            'warning',
+            'Cart is Empty!',
+            true,
+            'Go to home',
+            Colors.WARNING,
+            false,
+            ''
+          ).then((result: any) => {
             if (result.isConfirmed) {
               this.router.navigate(['../home'], {
                 relativeTo: this.activatedRoute,

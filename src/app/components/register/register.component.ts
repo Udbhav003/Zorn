@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUserFormData } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { Colors } from 'src/app/shared/colors';
 import { MustMatch } from 'src/app/shared/must-match.validator';
-import Swal from 'sweetalert2';
+import { Helper } from 'src/app/utils/helper.util';
 
 @Component({
   selector: 'app-register',
@@ -63,19 +64,15 @@ export class RegisterComponent implements OnInit {
         .isUserRegistered(this.userForm.getRawValue())
         .subscribe((response) => {
           if (response.length > 0) {
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              showClass: {
-                popup: 'animate__animated animate__fadeInUp animate__faster',
-              },
-              hideClass: {
-                popup: 'animate__animated animate__fadeOutDown animate__faster',
-              },
-              title: 'User already registered',
-              showConfirmButton: true,
-              confirmButtonText: 'Close',
-            });
+            Helper.displayAlert(
+              'error',
+              'User already registered',
+              true,
+              'Close',
+              Colors.ERROR,
+              false,
+              ''
+            );
           } else {
             let user = this.userForm.getRawValue();
 
@@ -90,40 +87,28 @@ export class RegisterComponent implements OnInit {
             this.authService.register(requestData).subscribe(
               (response: IUserFormData[]) => {
                 if (response) {
-                  Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    showClass: {
-                      popup:
-                        'animate__animated animate__fadeInUp animate__faster',
-                    },
-                    hideClass: {
-                      popup:
-                        'animate__animated animate__fadeOutDown animate__faster',
-                    },
-                    title: 'Registration Successful',
-                    showConfirmButton: true,
-                    confirmButtonText: 'Go to Login',
-                  });
+                  Helper.displayAlert(
+                    'success',
+                    'Registration Successful',
+                    true,
+                    'Go to Login',
+                    Colors.SUCCESS,
+                    false,
+                    ''
+                  );
                   this.router.navigate(['/login']);
                 }
               },
               (error) => {
-                Swal.fire({
-                  position: 'center',
-                  icon: 'error',
-                  showClass: {
-                    popup:
-                      'animate__animated animate__fadeInUp animate__faster',
-                  },
-                  hideClass: {
-                    popup:
-                      'animate__animated animate__fadeOutDown animate__faster',
-                  },
-                  title: 'Error Occurred',
-                  showConfirmButton: true,
-                  confirmButtonText: 'Close',
-                });
+                Helper.displayAlert(
+                  'error',
+                  'Error Occurred',
+                  true,
+                  'Close',
+                  Colors.ERROR,
+                  false,
+                  ''
+                );
               }
             );
           }

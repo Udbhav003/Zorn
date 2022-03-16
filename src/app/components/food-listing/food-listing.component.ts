@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IFoodData } from 'src/app/models/food.model';
 import { ICartData } from 'src/app/models/cart.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -8,6 +7,9 @@ import { CartService } from 'src/app/services/cart.service';
 import { FoodService } from 'src/app/services/food.service';
 import Swal from 'sweetalert2';
 import { Helper } from 'src/app/utils/helper.util';
+import { Colors } from 'src/app/shared/colors';
+import { UserService } from 'src/app/services/user.service';
+import { CommunicationService } from 'src/app/services/communication.service';
 
 @Component({
   selector: 'app-food-listing',
@@ -25,6 +27,8 @@ export class FoodListingComponent implements OnInit {
     private foodService: FoodService,
     private cartService: CartService,
     private authService: AuthService,
+    private userService: UserService,
+    private communicationService: CommunicationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -32,7 +36,7 @@ export class FoodListingComponent implements OnInit {
     this.cartData = [];
     this.cart = {} as ICartData;
     this.isNewRecord = true;
-    this.searchInputText = ""
+    this.searchInputText = '';
   }
 
   ngOnInit(): void {
@@ -56,6 +60,7 @@ export class FoodListingComponent implements OnInit {
         if (response != null && response.length > 0) {
           this.cart = response[0];
           this.cartData = response[0].items;
+          this.communicationService.setCartSize(response[0].items.length);
           this.isNewRecord = false;
         } else {
           this.cart = {
@@ -64,6 +69,7 @@ export class FoodListingComponent implements OnInit {
             items: [],
           };
           this.cartData = [];
+          this.communicationService.setCartSize(0);
           this.isNewRecord = true;
         }
       });
@@ -81,14 +87,14 @@ export class FoodListingComponent implements OnInit {
           ' to Cart?</h5></div>',
         showCancelButton: true,
         showClass: {
-          popup: 'animate__animated animate__fadeInUp animate__faster'
+          popup: 'animate__animated animate__fadeInUp animate__faster',
         },
         hideClass: {
           popup: 'animate__animated animate__fadeOutDown animate__faster',
         },
         confirmButtonText: 'Add to Cart',
-        confirmButtonColor: '#2d6a4f',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: Colors.SUCCESS,
+        cancelButtonColor: Colors.ERROR,
       }).then((result) => {
         if (result.isConfirmed) {
           this.addItemToCart(food);
@@ -104,21 +110,18 @@ export class FoodListingComponent implements OnInit {
           '?</h5></div>',
         showCancelButton: true,
         showClass: {
-          popup: 'animate__animated animate__fadeInUp animate__faster'
+          popup: 'animate__animated animate__fadeInUp animate__faster',
         },
         hideClass: {
           popup: 'animate__animated animate__fadeOutDown animate__faster',
         },
         confirmButtonText: 'Place Order',
-        confirmButtonColor: '#2d6a4f',
-        cancelButtonColor: '#d33'
+        confirmButtonColor: Colors.SUCCESS,
+        cancelButtonColor: Colors.ERROR,
       }).then((result) => {
         if (result.isConfirmed) {
           //Place Order
-          Helper.isNextStep = true;
-          this.router.navigate(['../tracking', food.cost], {
-            relativeTo: this.activatedRoute,
-          });
+          this.placeOrder(food.cost);
         }
       });
     }
@@ -133,20 +136,30 @@ export class FoodListingComponent implements OnInit {
       this.cartService.createCart(this.cart).subscribe((response) => {
         this.fetchCartList();
         if (response) {
-          this.displayMessage(
-            'C',
-            'Item added to Cart',
+          Helper.displayAlert(
             'success',
+            'Item added to Cart',
+            true,
             'Go to Cart',
-            true
-          );
+            Colors.SUCCESS,
+            true,
+            'Cancel'
+          ).then((result: any) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['../cart'], {
+                relativeTo: this.activatedRoute,
+              });
+            }
+          });
         } else {
-          this.displayMessage(
-            'E',
-            'Failed to add Item!',
+          Helper.displayAlert(
             'error',
+            'Failed to add Item!',
+            true,
             'Okay',
-            false
+            Colors.ERROR,
+            false,
+            ''
           );
         }
       });
@@ -156,55 +169,60 @@ export class FoodListingComponent implements OnInit {
         .subscribe((response) => {
           this.fetchCartList();
           if (response) {
-            this.displayMessage(
-              'C',
-              'Item added to Cart',
+            Helper.displayAlert(
               'success',
+              'Item added to Cart',
+              true,
               'Go to Cart',
-              true
-            );
+              Colors.SUCCESS,
+              true,
+              'Cancel'
+            ).then((result: any) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['../cart'], {
+                  relativeTo: this.activatedRoute,
+                });
+              }
+            });
           } else {
-            this.displayMessage(
-              'E',
-              'Failed to add Item!',
+            Helper.displayAlert(
               'error',
+              'Failed to add Item!',
+              true,
               'Okay',
-              false
+              Colors.ERROR,
+              false,
+              ''
             );
           }
         });
     }
   }
 
-  private displayMessage(
-    action: string,
-    msg: string,
-    status: any,
-    confirmText: string,
-    showCancelButton: boolean
-  ) {
-    Swal.fire({
-      text: msg,
-      icon: status,
-      showCancelButton: showCancelButton,
-      cancelButtonColor: '#d33',
-      showConfirmButton: true,
-      showClass: {
-        popup: 'animate__animated animate__fadeInUp animate__faster'
-      },
-      hideClass: {
-        popup: 'animate__animated animate__fadeOutDown animate__faster',
-      },
-      confirmButtonText: confirmText,
-      confirmButtonColor: '#2d6a4f',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (action === 'C') {
-          this.router.navigate(['../cart'], {
+  private placeOrder(cost: number) {
+    this.userService
+      .getUserData(this.authService.currentUserValue.id.toString())
+      .subscribe((response) => {
+        if (response.addresses != null && response.addresses.length > 0) {
+          Helper.isNextStep = true;
+          this.router.navigate(['../tracking', cost], {
             relativeTo: this.activatedRoute,
           });
+        } else {
+          Helper.displayAlert(
+            'error',
+            'Please add an address',
+            true,
+            'Add Address',
+            Colors.WARNING,
+            false,
+            ''
+          ).then((response: any) => {
+            if (response.isConfirmed) {
+              this.router.navigate(['../settings/address']);
+            }
+          });
         }
-      }
-    });
+      });
   }
 }

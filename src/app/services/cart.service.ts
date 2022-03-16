@@ -49,12 +49,4 @@ export class CartService {
         })
       );
   }
-
-  public createOrder(orderCreationRequest: IOrderData): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:3000/orders', orderCreationRequest).pipe(
-      map((response) => {
-        return response;
-      })
-    );
-  }
 }

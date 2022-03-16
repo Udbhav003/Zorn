@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { IUserFormData } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { Colors } from 'src/app/shared/colors';
 import { MustMatch } from 'src/app/shared/must-match.validator';
-import Swal from 'sweetalert2';
+import { Helper } from 'src/app/utils/helper.util';
 
 @Component({
   selector: 'app-reset-password',
@@ -76,19 +77,15 @@ export class ResetPasswordComponent implements OnInit {
             this.initResetPasswordForm();
             this.showPasswordEntries = true;
           } else {
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              showClass: {
-                popup: 'animate__animated animate__fadeInUp animate__faster',
-              },
-              hideClass: {
-                popup: 'animate__animated animate__fadeOutDown animate__faster',
-              },
-              title: 'Invalid User',
-              showConfirmButton: true,
-              confirmButtonText: 'Close',
-            });
+            Helper.displayAlert(
+              'error',
+              'Invalid User',
+              true,
+              'Close',
+              Colors.ERROR,
+              false,
+              ''
+            );
           }
         });
     }
@@ -102,19 +99,15 @@ export class ResetPasswordComponent implements OnInit {
         .updateUser(this.userDetails.id.toString(), this.userDetails)
         .subscribe((response) => {
           if (response) {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              showClass: {
-                popup: 'animate__animated animate__fadeInUp animate__faster',
-              },
-              hideClass: {
-                popup: 'animate__animated animate__fadeOutDown animate__faster',
-              },
-              title: 'Password Updated',
-              showConfirmButton: true,
-              confirmButtonText: 'Okay',
-            }).then((response) => {
+            Helper.displayAlert(
+              'success',
+              'Password Updated',
+              true,
+              'Okay',
+              Colors.SUCCESS,
+              false,
+              ''
+            ).then((response: any) => {
               if (response.isConfirmed) {
                 this.router.navigate(['/login']);
               }

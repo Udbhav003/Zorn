@@ -104,8 +104,10 @@
           <div *ngIf="f['month'].errors['required']">Month is required</div>
         </div>
         <div *ngIf="submitted && f['month'].errors" class="invalid-feedback">
-            <div *ngIf="f['month'].errors['invalidMonth']">Can't select past month</div>
+          <div *ngIf="f['month'].errors['invalidMonth']">
+            Can't select past month
           </div>
+        </div>
       </div>
       <div class="form-group col-md-4">
         <label for="year">Year</label>

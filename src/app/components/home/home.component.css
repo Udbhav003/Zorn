@@ -1,33 +1,36 @@
-i{
-    padding-left: 10px;
-    padding-right: 8px;
+i {
+  padding-left: 10px;
+  padding-right: 8px;
 }
 
-.logout-btn{
-    border-color: #1CBBEA;
-    color: #eee;
-    font-weight: 500;
-    border-width: 2px;
-
+.logout-btn {
+  border-color: #1cbbea;
+  color: #eee;
+  font-weight: 500;
+  border-width: 2px;
+  width: auto;
 }
 
-.logout-btn:hover{
-    border-color: #1CBBEA;
-    background-color: #1CBBEA;
-    color: #eee;
-    font-weight: 500;
-    border-width: 2px;
-
+.logout-btn:hover {
+  border-color: #1cbbea;
+  background-color: #1cbbea;
+  color: #eee;
+  font-weight: 500;
+  border-width: 2px;
 }
 
-.navbar-dark .nav-item .nav-link{
-    font-weight: 500;
+.navbar-dark .nav-item .nav-link {
+  font-weight: 500;
+  -o-transition: all 0.218s;
+  -moz-transition: all 0.218s;
+  -webkit-transition: all 0.218s;
+  transition: all 0.218s;
 }
 
 .navbar-dark .nav-item.active .nav-link,
 .navbar-dark .nav-item .nav-link:active,
 .navbar-dark .nav-item .nav-link:focus,
-.navbar-dark .nav-item:hover .nav-link{
-    font-weight: 500;
-    color: #FFF;
+.navbar-dark .nav-item:hover .nav-link {
+  font-weight: 500;
+  color: #fff;
 }

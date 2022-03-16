@@ -33,8 +33,7 @@ const routes: Routes = [
       },
       {
         path: 'tracking',
-        component: TrackingComponent,
-        canActivate: [AuthGuard]
+        component: TrackingComponent
       },
       {
         path: 'tracking/:total',

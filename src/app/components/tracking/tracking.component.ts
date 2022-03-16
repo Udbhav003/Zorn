@@ -5,9 +5,12 @@ import { IOrderData } from 'src/app/models/order.model';
 import { IPaymentMethodData } from 'src/app/models/pay-method.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { CommunicationService } from 'src/app/services/communication.service';
+import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
+import { Colors } from 'src/app/shared/colors';
 import { ValidMonthYear } from 'src/app/shared/month-year.validator';
-import Swal from 'sweetalert2';
+import { Helper } from 'src/app/utils/helper.util';
 
 @Component({
   selector: 'app-tracking',
@@ -28,6 +31,8 @@ export class TrackingComponent implements OnInit, OnDestroy {
 
   submitted = false;
   inAddMode: boolean;
+  searchInputText: string;
+  paymentDone: boolean;
 
   totalAmountToPay: number;
 
@@ -36,6 +41,8 @@ export class TrackingComponent implements OnInit, OnDestroy {
   allPaymentMethods: IPaymentMethodData[];
   currentPaymentMethod: IPaymentMethodData;
   selectedPaymentIndex: number;
+
+  orders: IOrderData[];
 
   backgroundColorArray: { background: string }[];
   monthsArray: number[];
@@ -47,7 +54,9 @@ export class TrackingComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
+    private orderService: OrderService,
+    private communicationService: CommunicationService
   ) {
     this.creditCardForm = {} as FormGroup;
     this.bankForm = {} as FormGroup;
@@ -55,7 +64,11 @@ export class TrackingComponent implements OnInit, OnDestroy {
     this.currentPaymentMethod = {} as IPaymentMethodData;
     this.selectedPaymentIndex = -1;
     this.inAddMode = false;
+    this.searchInputText = '';
+    this.paymentDone = false;
     this.totalAmountToPay = 0;
+
+    this.orders = [];
 
     this.bankSectionVisible = true;
     this.creditCardSectionVisible = false;
@@ -83,11 +96,12 @@ export class TrackingComponent implements OnInit, OnDestroy {
         this.fetchPaymentDetails(this.currentUser.id.toString());
 
         this.openModal?.nativeElement.click();
+      } else {
+        //Get all orders
+        this.paymentDone = true;
+        this.fetchAllOrders();
       }
-      else{
-        //Get old orders :TODO
-      }
-      
+
       this.creditCardForm = this.formBuilder.group(
         {
           fullName: ['', Validators.required],
@@ -125,6 +139,16 @@ export class TrackingComponent implements OnInit, OnDestroy {
 
   get bankFormControls() {
     return this.bankForm.controls;
+  }
+
+  private fetchAllOrders() {
+    this.orderService
+      .getAllOrders(this.currentUser.id.toString())
+      .subscribe((response) => {
+        if (response != null && response.length > 0) {
+          this.orders = response.reverse();
+        }
+      });
   }
 
   private fetchPaymentDetails(id: string) {
@@ -241,53 +265,60 @@ export class TrackingComponent implements OnInit, OnDestroy {
             address: response.addresses[response.addresses.length - 1],
             orderStatus: 'Placed',
             paymentStatus: 'Paid',
+            orderTotal: this.totalAmountToPay,
             orderDateTime: new Date().toString(),
           } as IOrderData;
 
-          this.cartService.createOrder(requestObject).subscribe((res) => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              showClass: {
-                popup: 'animate__animated animate__fadeInUp animate__faster',
-              },
-              hideClass: {
-                popup: 'animate__animated animate__fadeOutDown animate__faster',
-              },
-              title: 'Order Placed Successfully',
-              showConfirmButton: true,
-              confirmButtonText: 'Track Order',
+          this.orderService.createOrder(requestObject).subscribe((res) => {
+            Helper.displayAlert(
+              'success',
+              'Order Placed Successfully',
+              true,
+              'View My Orders',
+              Colors.SUCCESS,
+              false,
+              ''
+            ).then((result: any) => {
+              if (result.isConfirmed) {
+                this.paymentDone = true;
+                this.fetchAllOrders();
+                this.closeButton.nativeElement.click();
+              }
             });
-            this.cartService
-              .getCartItems(this.currentUser.id.toString())
-              .subscribe((cart) => {
-                if (cart != null && cart.length > 0) {
-                  this.cartService
-                    .deleteCartItems(cart[0].id.toString())
-                    .subscribe();
-                }
-              });
-            this.closeButton.nativeElement.click();
+
+            this.deleteCartItems();
           });
         } else {
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            showClass: {
-              popup: 'animate__animated animate__fadeInUp animate__faster',
-            },
-            hideClass: {
-              popup: 'animate__animated animate__fadeOutDown animate__faster',
-            },
-            title: 'Please add an address',
-            showConfirmButton: true,
-            confirmButtonText: 'Okay',
+          Helper.displayAlert(
+            'error',
+            'Please add an address',
+            true,
+            'Add Address',
+            Colors.PRIMARY,
+            false,
+            ''
+          );
+
+          this.router.navigate(['../settings/address'], {
+            relativeTo: this.activatedRoute,
           });
-          this.router.navigate(['../settings/address']);
         }
       });
   }
 
+  private deleteCartItems() {
+    this.cartService
+      .getCartItems(this.currentUser.id.toString())
+      .subscribe((cart) => {
+        if (cart != null && cart.length > 0) {
+          this.cartService
+            .deleteCartItems(cart[0].id.toString())
+            .subscribe((deleted) => {
+              if (deleted) this.communicationService.setCartSize(0);
+            });
+        }
+      });
+  }
   public makeCreditCardSectionVisible() {
     this.bankSectionVisible = false;
     this.creditCardSectionVisible = true;

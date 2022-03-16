@@ -7,86 +7,94 @@
     />
     <h1 class="app-title">orn</h1>
   </div>
-  <div class="card card-container col-lg-6 col-md-10 col-sm-12">
-    <div class="card-body">
-      <h4 class="card-title">Login</h4>
-      <form class="form-signin" (ngSubmit)="onSubmit()" [formGroup]="userForm">
-        <span id="reauth-email" class="reauth-email"></span>
-        <input
-          type="email"
-          id="inputEmail"
-          class="form-control"
-          formControlName="email"
-          placeholder="Email address"
-          [ngClass]="{
-            'is-invalid': isFormSubmitted && userFormControls['email'].errors
-          }"
-        />
-        <div
-          *ngIf="isFormSubmitted && userFormControls['email'].errors"
-          class="invalid-feedback"
+  <div class="card card-container col-lg-8 col-md-10 col-sm-12">
+    <div class="card-body row">
+      <img src="./assets/login-img.jpg" class="col-lg-7 col-md-7 col-sm-12" />
+      <div class="col-lg-5 col-md-5 col-sm-12 pr-4">
+        <h4 class="card-title">Login</h4>
+        <form
+          class="form-signin"
+          (ngSubmit)="onSubmit()"
+          [formGroup]="userForm"
         >
+          <label>Email</label>
+          <input
+            type="email"
+            id="inputEmail"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email address"
+            [ngClass]="{
+              'is-invalid': isFormSubmitted && userFormControls['email'].errors
+            }"
+          />
           <div
-            *ngIf="
-              userFormControls['email'].errors &&
-              userFormControls['email'].errors['required']
-            "
+            *ngIf="isFormSubmitted && userFormControls['email'].errors"
+            class="invalid-feedback"
           >
-            <p class="errorText">Email is required</p>
+            <div
+              *ngIf="
+                userFormControls['email'].errors &&
+                userFormControls['email'].errors['required']
+              "
+            >
+              <p class="errorText">Email is required</p>
+            </div>
           </div>
-        </div>
-        <div
-          *ngIf="isFormSubmitted && userFormControls['email'].errors"
-          class="invalid-feedback"
-        >
           <div
-            *ngIf="
-              userFormControls['email'].errors &&
-              userFormControls['email'].errors['email']
-            "
+            *ngIf="isFormSubmitted && userFormControls['email'].errors"
+            class="invalid-feedback"
           >
-            <p class="errorText">
-              Enter a valid email address, e.g., john@example.com
-            </p>
+            <div
+              *ngIf="
+                userFormControls['email'].errors &&
+                userFormControls['email'].errors['email']
+              "
+            >
+              <p class="errorText">
+                Enter a valid email address, e.g., john@example.com
+              </p>
+            </div>
           </div>
-        </div>
-        <input
-          type="password"
-          id="inputPassword"
-          class="form-control"
-          formControlName="password"
-          placeholder="Password"
-          [ngClass]="{
-            'is-invalid': isFormSubmitted && userFormControls['password'].errors
-          }"
-        />
-        <div
-          *ngIf="isFormSubmitted && userFormControls['password'].errors"
-          class="invalid-feedback"
-        >
+          <label>Password</label>
+          <input
+            type="password"
+            id="inputPassword"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+            [ngClass]="{
+              'is-invalid':
+                isFormSubmitted && userFormControls['password'].errors
+            }"
+          />
           <div
-            *ngIf="
-              userFormControls['password'].errors &&
-              userFormControls['password'].errors['required']
-            "
+            *ngIf="isFormSubmitted && userFormControls['password'].errors"
+            class="invalid-feedback"
           >
-            <p class="errorText">Password is required</p>
+            <div
+              *ngIf="
+                userFormControls['password'].errors &&
+                userFormControls['password'].errors['required']
+              "
+            >
+              <p class="errorText">Password is required</p>
+            </div>
           </div>
-        </div>
-        <button
-          class="btn btn-lg btn-primary btn-block btn-signin"
-          type="submit"
-        >
-          Sign in
+          <button
+            class="btn btn-lg btn-primary btn-block btn-signin"
+            type="submit"
+          >
+            Sign in
+          </button>
+        </form>
+        <a routerLink="/reset-password" class="forgot-password">
+          Forgot the password?
+        </a>
+        <button class="btn btn-lg btn-register" routerLink="/register">
+          Register<i class="fa fa-arrow-right"></i>
         </button>
-      </form>
-      <a routerLink="/reset-password" class="forgot-password"> Forgot the password? </a>
-      <button
-        class="btn btn-lg btn-register"
-        routerLink="/register"
-      >
-        Register<i class="fa fa-arrow-right"></i>
-      </button>
+      </div>
     </div>
   </div>
 </div>

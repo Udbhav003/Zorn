@@ -1,50 +1,5 @@
 {
-  "users": [
-    {
-      "id": 346178,
-      "firstName": "Udbhav",
-      "lastName": "Sinha",
-      "email": "udbhavsinha003@gmail.com",
-      "password": "1234567",
-      "addresses": [
-        {
-          "houseNo": "Mill Tola, Aminabad",
-          "city": "Katihar",
-          "state": "Bihar",
-          "landmark": "Near Powerhouse"
-        },
-        {
-          "houseNo": "Mill Tola, Aminabad, PO Semapur Factory",
-          "city": "Katihar",
-          "state": "Bihar",
-          "landmark": "Near Electric Powerhouse"
-        }
-      ],
-      "paymentMethods": [
-        {
-          "fullName": "Udbhav Kishor Sinha",
-          "creditCardNo": 4543537654534554,
-          "month": 6,
-          "year": 2024,
-          "cvv": 987
-        },
-        {
-          "fullName": "Rishita Kashyap",
-          "creditCardNo": 9849032743080936,
-          "month": 6,
-          "year": 2023,
-          "cvv": 534
-        }
-      ]
-    },
-    {
-      "id": 342349,
-      "firstName": "Rishita",
-      "lastName": "Kashyap",
-      "email": "rishita022@gmail.com",
-      "password": "1234567"
-    }
-  ],
+  "users": [],
   "foodList": [
     {
       "feedId": 45,
@@ -217,58 +172,6 @@
       "id": 17
     }
   ],
-  "orders": [
-    {
-      "id": 11978,
-      "userId": 346178,
-      "payment": {
-        "accountHolderName": "Binay Kumar",
-        "accountNo": 3698374937,
-        "bankName": "State Bank of India",
-        "paymentMethod": "Account Transfer"
-      },
-      "address": {
-        "houseNo": "Mill Tola, Aminabad, PO Semapur Factory",
-        "city": "Katihar",
-        "state": "Bihar",
-        "landmark": "Near Electric Powerhouse"
-      },
-      "orderStatus": "Placed",
-      "paymentStatus": "Paid",
-      "orderDateTime": "Mon Mar 14 2022 20:35:12 GMT+0530 (India Standard Time)"
-    },
-    {
-      "id": 665738,
-      "userId": 346178,
-      "payment": {
-        "fullName": "Udbhav Kishor Sinha",
-        "creditCardNo": 4543537654534554,
-        "month": 6,
-        "year": 2024,
-        "cvv": 987,
-        "paymentMethod": "Credit Card"
-      },
-      "address": {
-        "houseNo": "Mill Tola, Aminabad, PO Semapur Factory",
-        "city": "Katihar",
-        "state": "Bihar",
-        "landmark": "Near Electric Powerhouse"
-      },
-      "orderStatus": "Placed",
-      "paymentStatus": "Paid",
-      "orderDateTime": "Mon Mar 14 2022 21:19:01 GMT+0530 (India Standard Time)"
-    }
-  ],
-  "cart": [
-    {
-      "id": 916796,
-      "userId": "346178",
-      "items": []
-    },
-    {
-      "id": 853623,
-      "userId": "342349",
-      "items": []
-    }
-  ]
+  "orders": [],
+  "cart": []
 }

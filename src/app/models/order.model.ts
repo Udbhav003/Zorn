@@ -7,5 +7,6 @@ export interface IOrderData {
     payment: any;
     orderStatus: string;
     paymentStatus: string,
+    orderTotal: number,
     orderDateTime: string
   }

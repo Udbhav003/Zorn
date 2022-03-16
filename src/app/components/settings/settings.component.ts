@@ -15,12 +15,12 @@ export class SettingsComponent implements OnInit {
     if (this.authService.currentUserValue == null) {
       this.router.navigate(['/login']);
     }
-    this.currentUser = {} as IUserFormData
+    this.currentUser = {} as IUserFormData;
   }
 
   ngOnInit(): void {
-    this.authService.currentUser.subscribe((response)=>{
+    this.authService.currentUser.subscribe((response) => {
       this.currentUser = response;
-    })
+    });
   }
 }

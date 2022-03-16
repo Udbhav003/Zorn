@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUserFormData } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import Swal from 'sweetalert2';
+import { Colors } from 'src/app/shared/colors';
+import { Helper } from 'src/app/utils/helper.util';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   public userForm: FormGroup;
@@ -16,7 +17,11 @@ export class LoginComponent implements OnInit {
 
   public isFormSubmitted: boolean;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.userForm = {} as FormGroup;
     this.userDetails = {};
     this.isFormSubmitted = false;
@@ -28,8 +33,8 @@ export class LoginComponent implements OnInit {
 
   public initUserForm(): void {
     this.userForm = this.formBuilder.group({
-      email: ['',[Validators.required, Validators.email]],
-      password: ['',[Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -39,31 +44,24 @@ export class LoginComponent implements OnInit {
 
   public onSubmit(): void {
     this.isFormSubmitted = true;
-    if(this.userForm.valid){
-      this.authService.login(this.userForm.getRawValue()).subscribe(
-        (response: IUserFormData)=>{
-          if(response!=null){
+    if (this.userForm.valid) {
+      this.authService
+        .login(this.userForm.getRawValue())
+        .subscribe((response: IUserFormData) => {
+          if (response != null) {
             this.router.navigate(['/home']);
+          } else {
+            Helper.displayAlert(
+              'error',
+              'Invalid Credentials',
+              true,
+              'Close',
+              Colors.ERROR,
+              false,
+              ''
+            );
           }
-          else{
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              showClass: {
-                popup: 'animate__animated animate__fadeInUp animate__faster'
-              },
-              hideClass: {
-                popup: 'animate__animated animate__fadeOutDown animate__faster',
-              },
-              title: 'Invalid Credentials',
-              text:'Please Try Again!',
-              showConfirmButton: true,
-              confirmButtonText: 'Close'
-            });
-          }
-        }
-      )
+        });
     }
   }
-
 }

@@ -163,46 +163,46 @@
           </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-12">
-              <input
-                type="password"
-                id="inputConfirmPassword"
-                class="form-control"
-                formControlName="cPassword"
-                placeholder="Confirm Password"
-                [ngClass]="{
-                  'is-invalid':
-                    isFormSubmitted && userFormControls['cPassword'].errors
-                }"
-              />
+          <div class="form-group col-md-12">
+            <input
+              type="password"
+              id="inputConfirmPassword"
+              class="form-control"
+              formControlName="cPassword"
+              placeholder="Confirm Password"
+              [ngClass]="{
+                'is-invalid':
+                  isFormSubmitted && userFormControls['cPassword'].errors
+              }"
+            />
+            <div
+              *ngIf="isFormSubmitted && userFormControls['cPassword'].errors"
+              class="invalid-feedback"
+            >
               <div
-                *ngIf="isFormSubmitted && userFormControls['cPassword'].errors"
-                class="invalid-feedback"
+                *ngIf="
+                  userFormControls['cPassword'].errors &&
+                  userFormControls['cPassword'].errors['required']
+                "
               >
-                <div
-                  *ngIf="
-                    userFormControls['cPassword'].errors &&
-                    userFormControls['cPassword'].errors['required']
-                  "
-                >
-                  <p class="errorText">Confirm Password is required</p>
-                </div>
+                <p class="errorText">Confirm Password is required</p>
               </div>
+            </div>
+            <div
+              *ngIf="isFormSubmitted && userFormControls['cPassword'].errors"
+              class="invalid-feedback"
+            >
               <div
-                *ngIf="isFormSubmitted && userFormControls['cPassword'].errors"
-                class="invalid-feedback"
+                *ngIf="
+                  userFormControls['cPassword'].errors &&
+                  userFormControls['cPassword'].errors['mustMatch']
+                "
               >
-                <div
-                  *ngIf="
-                    userFormControls['cPassword'].errors &&
-                    userFormControls['cPassword'].errors['mustMatch']
-                  "
-                >
-                  <p class="errorText">Password Mismatch</p>
-                </div>
+                <p class="errorText">Password Mismatch</p>
               </div>
             </div>
           </div>
+        </div>
         <button
           class="btn btn-lg btn-primary btn-block btn-signup"
           type="submit"
@@ -210,10 +210,7 @@
           Register
         </button>
       </form>
-      <button
-        class="btn btn-lg btn-login mt-2"
-        routerLink="/login"
-      >
+      <button class="btn btn-lg btn-login mt-2" routerLink="/login">
         <i class="fa fa-arrow-left"></i>Login
       </button>
     </div>

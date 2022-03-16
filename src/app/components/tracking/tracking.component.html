@@ -1,3 +1,74 @@
+<div class="container-fluid" *ngIf="paymentDone">
+  <div class="d-flex justify-content-center h-100">
+    <div class="searchbar col-lg-8 col-md-10 col-sm-12">
+      <input
+        class="search_input"
+        type="text"
+        name=""
+        placeholder="Search with Order ID"
+        [(ngModel)]="searchInputText"
+      />
+      <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+    </div>
+  </div>
+  <div class="row orders-container">
+    <div
+      *ngFor="let order of orders | filter: searchInputText:'orders'"
+      class="card col-lg-5 col-md-5 col-sm-10 mx-2"
+    >
+      <div class="card-header d-flex">
+        <h5 class="card-title py-0 my-0 w-100">#Order {{ order.id }}</h5>
+        <h6 class="card-title py-0 my-auto font-weight-bold">
+          {{ order.orderTotal | currency: "INR":"symbol" }}
+        </h6>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <label class="font-weight-bold">Order Status</label>
+            <h6>
+              <span class="badge badge-success px-2 py-2">
+                {{ order.orderStatus }}
+              </span>
+            </h6>
+          </div>
+          <div class="col">
+            <label class="font-weight-bold">Payment Status</label>
+            <h6>
+              <span class="badge badge-success px-2 py-2">
+                {{ order.paymentStatus }}
+              </span>
+            </h6>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <label class="font-weight-bold">Order Created On</label>
+            <p>
+              {{ order.orderDateTime | date: "medium" }}
+            </p>
+          </div>
+          <div class="col">
+            <label class="font-weight-bold">Payment Method</label>
+            <p>
+              {{ order.payment.paymentMethod }}
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label class="font-weight-bold">Address</label>
+            <p class="card-text">
+              {{ order.address.houseNo }}, {{ order.address.landmark }},
+              {{ order.address.city }}, {{ order.address.state }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Button trigger modal -->
 <button
   #openModal
@@ -7,9 +78,7 @@
   data-backdrop="static"
   data-keyboard="false"
   data-target="#exampleModal"
->
-  Launch demo modal
-</button>
+></button>
 
 <!-- Modal -->
 <div
@@ -22,7 +91,10 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Complete Payment</h5><span class="text-success text-right font-weight-bold">{{totalAmountToPay | currency:"INR":"symbol"}}</span>
+        <h5 class="modal-title" id="exampleModalLabel">Complete Payment</h5>
+        <span class="text-success text-right font-weight-bold">{{
+          totalAmountToPay | currency: "INR":"symbol"
+        }}</span>
         <button
           #closebutton
           type="button"

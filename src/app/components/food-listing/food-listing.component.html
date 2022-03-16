@@ -1,14 +1,20 @@
 <div class="container-fluid">
   <div class="d-flex justify-content-center h-100">
     <div class="searchbar col-lg-8 col-md-10 col-sm-12">
-      <input class="search_input" type="text" name="" placeholder="Search..." [(ngModel)]="searchInputText" />
+      <input
+        class="search_input"
+        type="text"
+        name=""
+        placeholder="Search..."
+        [(ngModel)]="searchInputText"
+      />
       <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
     </div>
   </div>
 
   <div class="row food-list-container">
     <div
-      *ngFor="let food of foods | filter: searchInputText"
+      *ngFor="let food of foods | filter: searchInputText:'foods'"
       class="card col-lg-3 col-md-4 col-sm-8 mx-2"
     >
       <a
@@ -31,10 +37,14 @@
         </div>
         <p class="card-text">{{ food.description }}</p>
         <div class="row card-btn-container">
-          <a class="btn btn-add-to-cart col ml-3 mr-1" (click)="confirm('cart',food)"
+          <a
+            class="btn btn-add-to-cart col ml-3 mr-1"
+            (click)="confirm('cart', food)"
             >Add to Cart</a
           >
-          <a class="btn btn-primary col ml-1 mr-3" (click)="confirm('order',food)"
+          <a
+            class="btn btn-primary col ml-1 mr-3"
+            (click)="confirm('order', food)"
             >Order Now</a
           >
         </div>

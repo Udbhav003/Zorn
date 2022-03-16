@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { CommunicationService } from 'src/app/services/communication.service';
 import { Helper } from 'src/app/utils/helper.util';
 
 @Component({
@@ -10,12 +11,19 @@ import { Helper } from 'src/app/utils/helper.util';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  itemsInCart: boolean;
+  cartSize: number;
+
   constructor(
     private authService: AuthService,
+    private communicationService: CommunicationService,
     private cartService: CartService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.itemsInCart = false;
+    this.cartSize = 0;
+  }
 
   ngOnInit(): void {
     if (this.authService.currentUserValue == null) {
@@ -23,13 +31,14 @@ export class HomeComponent implements OnInit {
         relativeTo: this.activatedRoute,
       });
     }
-  }
-
-  public navigateToTracking(){
-    Helper.isNextStep = true
-    this.router.navigate(['../tracking',0], {
-      relativeTo: this.activatedRoute,
-    })
+    this.communicationService.currentCartSize.subscribe((response) => {
+      if (response > 0) {
+        this.cartSize = response;
+        this.itemsInCart = true;
+      } else {
+        this.itemsInCart = false;
+      }
+    });
   }
 
   public logOut() {

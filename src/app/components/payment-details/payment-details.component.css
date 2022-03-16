@@ -16,12 +16,12 @@ label {
   font-weight: 500;
 }
 
-.payment-method-card:hover{
-    cursor: pointer;
+.payment-method-card:hover {
+  cursor: pointer;
 }
 
-.selected-payment-method-card{
-    cursor: pointer;
-    border-width: 2px;
-    border-color: #222;
+.selected-payment-method-card {
+  cursor: pointer;
+  border-width: 2px;
+  border-color: #222;
 }
