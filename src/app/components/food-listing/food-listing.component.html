@@ -17,12 +17,11 @@
       *ngFor="let food of foods | filter: searchInputText:'foods'"
       class="card col-lg-3 col-md-4 col-sm-8 mx-2"
     >
-      <a
-        ><img
-          class="card-img-top"
-          src="{{ food.imageUrl }}"
-          alt="Card image cap"
-      /></a>
+      <img
+        class="card-img-top"
+        src="{{ food.imageUrl }}"
+        alt="Card image cap"
+      />
       <div class="card-body">
         <h5 class="card-title">{{ food.dishName | titlecase }}</h5>
         <div class="row ratings-container">
